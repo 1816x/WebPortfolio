@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "title": "Santiago Rivera — Software, web, automation, AI",
+    "description": "Santiago Rivera builds web products, automation and AI systems. Founder of Directa.",
+    "ogAlt": "Santiago Rivera — Portfolio"
+  },
+  "nav": {
+    "home": "Index",
+    "work": "Work",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "skipToContent": "Skip to content"
+  },
+  "home": {
+    "heroEyebrow": "Independent — based in México",
+    "heroLineA": "Software,",
+    "heroLineB": "web, automation",
+    "heroLineC": "and AI systems.",
+    "heroIntro": "I build the things companies usually have to assemble from three different teams — design, web and back-office automation — under one practice.",
+    "ctaWork": "See selected work",
+    "ctaContact": "Get in touch",
+    "introHeading": "About",
+    "introBody": "Software developer working at the intersection of web products, automation and AI. I run Directa, a services studio for businesses that need both design clarity and engineering depth without the agency overhead.",
+    "workHeading": "Selected work",
+    "workViewAll": "View all work",
+    "servicesHeading": "Services",
+    "servicesLead": "Four lines of work, framed by the problem they solve rather than the tools they use.",
+    "capabilitiesHeading": "Capabilities",
+    "capabilitiesLead": "A working stack — not a wall of logos.",
+    "contactHeading": "Let's talk",
+    "contactLead": "If you have a project, a system that is not paying for itself, or a question I can answer in twenty minutes — write."
+  },
+  "about": {
+    "title": "About",
+    "lede": "Software developer, founder of Directa. I build web products, automation and AI systems for teams that need both design and engineering from the same person.",
+    "focusHeading": "Current focus",
+    "focusBody": "Working on production web infrastructure for Spanish-speaking businesses, and on AI features that actually live inside the products their teams use every day.",
+    "approachHeading": "Approach",
+    "approachBody": "Small teams. Short engagements. Decisions written down. Nothing shipped that the client cannot operate afterwards.",
+    "directaHeading": "On Directa",
+    "directaBody": "Directa is the studio I run. The work shown here is built through it.",
+    "experienceHeading": "Experience",
+    "educationHeading": "Education",
+    "downloadCv": "Download CV"
+  },
+  "work": {
+    "title": "Work",
+    "lede": "One featured project for now. New case studies will appear here as they are ready to be told properly.",
+    "viewCase": "View case study",
+    "visit": "Visit live site",
+    "role": "Role",
+    "year": "Year",
+    "stack": "Stack"
+  },
+  "directa": {
+    "eyebrow": "Case study",
+    "context": "Context",
+    "problem": "Problem",
+    "role": "Role",
+    "strategy": "Strategy",
+    "implementation": "Implementation",
+    "design": "Design decisions",
+    "features": "Features delivered",
+    "outcome": "Outcome",
+    "visit": "Visit directa.mx"
+  },
+  "services": {
+    "title": "Services",
+    "lede": "Four engagements I take on, framed by the outcome rather than the deliverable.",
+    "problem": "Problem",
+    "deliverable": "Deliverable",
+    "outcome": "Outcome",
+    "cta": "Start a conversation"
+  },
+  "contact": {
+    "title": "Contact",
+    "lede": "Pick the channel that suits you. Calendar bookings go directly into my week.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "calendar": "Book a call",
+    "cv": "Download CV",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "common": {
+    "pending": "pending",
+    "pendingTooltip": "Placeholder — verified value not yet supplied",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "language": "Language",
+    "scrollHint": "Scroll",
+    "backHome": "Back to home"
+  },
+  "footer": {
+    "tagline": "Independent practice. Available for selected work.",
+    "rights": "All rights reserved.",
+    "builtWith": "Built by Santiago Rivera.",
+    "colophonHeading": "Colophon",
+    "colophonBody": "Type set in a contemporary serif and grotesque sans. Built with Next.js, Three.js and GSAP."
+  },
+  "notFound": {
+    "title": "Not found",
+    "body": "The page you were looking for is not here.",
+    "cta": "Back to home"
+  }
+}
