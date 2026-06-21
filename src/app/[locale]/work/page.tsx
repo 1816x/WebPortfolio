@@ -2,6 +2,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { site } from '@/content/site';
+import { Reveal } from '@/components/ui/Reveal';
+import { PendingBadge } from '@/components/ui/PendingBadge';
 import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -17,38 +19,54 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
   const l = locale as 'en' | 'es';
 
   return (
-    <article className="container-x pt-40 pb-24">
-      <p className="eyebrow mb-8">{t('title')}</p>
-      <h1 className="display text-[clamp(3rem,8vw,7rem)] leading-[1] tracking-tightest max-w-5xl">
-        {t('lede')}
-      </h1>
+    <article>
+      <header className="container-x py-16 md:py-24">
+        <div className="inline-flex items-center gap-2 border-2 border-ink bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] shadow-brut-sm">
+          <span className="dot" />
+          {t('title')}
+        </div>
+        <h1 className="mt-6 max-w-[20ch] text-[clamp(2.4rem,6.5vw,5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+          {t('lede')}
+        </h1>
+      </header>
 
-      <ul className="mt-24 rule">
-        {site.work.map((project, idx) => (
-          <li key={project.slug} className="border-b border-line/10 py-12 md:py-16">
-            <Link
-              href={project.slug === 'directa' ? '/work/directa' : '/work'}
-              className="group grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end"
-            >
-              <span className="label text-ink-subtle md:col-span-1">0{idx + 1}</span>
-              <div className="md:col-span-7">
-                <p className="display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tightest group-hover:italic group-hover:text-accent transition-all duration-500">
-                  {project.name}
-                </p>
-                <p className="mt-4 text-ink-muted text-lg max-w-xl">{project.summary[l]}</p>
-              </div>
-              <div className="md:col-span-4 md:text-right">
-                <p className="label text-ink-subtle">{t('year')}</p>
-                <p className="text-ink mt-1">{project.year.value}</p>
-                <p className="label text-ink-subtle mt-4">{project.tags.join(' · ')}</p>
-                <p className="label mt-4 text-ink group-hover:text-accent transition-colors">
-                  {t('viewCase')} →
-                </p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x grid gap-8 py-16 md:py-24">
+          {site.work.map((p, i) => (
+            <Reveal key={p.slug}>
+              <Link
+                href={p.slug === 'directa' ? '/work/directa' : '/work'}
+                className="group block border-[3px] border-ink bg-brand-blue p-7 text-white shadow-brut-lg md:p-10"
+              >
+                <div className="grid gap-7 md:grid-cols-2 md:items-end">
+                  <div>
+                    <div className="font-mono text-[12px] tracking-[0.14em] text-white/80">
+                      {String(i + 1).padStart(2, '0')} · {p.year.value}
+                      {p.year.pending ? <PendingBadge /> : null}
+                    </div>
+                    <div className="mt-3 text-[clamp(2.6rem,6vw,5.2rem)] font-bold leading-[0.9] tracking-[-0.03em]">
+                      {p.name}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[16px] leading-relaxed text-white/90">{p.summary[l]}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tags.map((tag) => (
+                        <span key={tag} className="border-2 border-white px-2.5 py-1 font-mono text-[11px] tracking-[0.06em]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="mt-6 inline-flex items-center gap-2 border-[3px] border-white bg-brand-yellow px-4 py-2.5 font-bold text-on-accent transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
+                      {t('viewCase')} →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </article>
   );
 }
