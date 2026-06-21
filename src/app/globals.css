@@ -3,32 +3,58 @@
 @tailwind utilities;
 
 /* -------------------------------------------------------------------------- */
-/*  Design tokens                                                              */
+/*  Design tokens — neo-brutalist                                              */
+/*  Space-separated RGB so Tailwind can apply <alpha-value>.                   */
 /* -------------------------------------------------------------------------- */
 
 :root {
-  /* Light — paper white, deep ink, restrained accent */
-  --canvas: 250 249 246;       /* paper */
-  --canvas-raised: 255 255 255;
-  --canvas-sunken: 244 242 237;
-  --ink: 18 18 20;
-  --ink-muted: 75 75 80;
-  --ink-subtle: 130 130 135;
-  --line: 18 18 20;             /* alpha applied per use */
-  --accent: 220 60 30;          /* signal red — used sparingly */
-  --gutter: clamp(1.25rem, 2.5vw, 2.5rem);
+  /* Light — warm cream paper, hard ink, four loud accents */
+  --canvas: 251 244 228;        /* #FBF4E4 cream page */
+  --canvas-raised: 255 255 255; /* white surface */
+  --canvas-sunken: 244 235 214; /* deeper cream */
+  --surface: 255 255 255;
+  --ink: 17 17 17;              /* #111 text + borders */
+  --ink-muted: 90 84 74;
+  --ink-subtle: 132 126 114;
+  --line: 17 17 17;
+  --shadow: 17 17 17;           /* hard offset shadow colour */
+  --accent: 61 90 254;          /* primary accent = electric blue */
+  --yellow: 255 210 63;         /* #FFD23F */
+  --blue: 61 90 254;            /* #3D5AFE */
+  --coral: 255 92 57;           /* #FF5C39 */
+  --green: 31 191 87;           /* #1FBF57 */
+  --panel: 17 17 17;            /* always-dark inverse panel (contact/footer/ticker) */
+  --panel-ink: 251 244 228;     /* light text that lives on the panel */
+  --gutter: clamp(1.1rem, 3.5vw, 2.5rem);
 }
 
 .dark {
-  /* Dark — graphite, paper-warm text, equal-weight visual */
-  --canvas: 10 10 12;
-  --canvas-raised: 18 18 22;
-  --canvas-sunken: 6 6 8;
-  --ink: 244 240 232;
-  --ink-muted: 175 175 180;
-  --ink-subtle: 110 110 115;
-  --line: 244 240 232;
-  --accent: 255 100 65;
+  /* Dark — warm graphite, cream ink, accents nudged brighter for legibility.
+     The hard "shadow" becomes a warm taupe so the offset still reads as a
+     deliberate risograph double-print instead of a glaring slab or an
+     invisible black block. */
+  --canvas: 22 19 14;           /* warm near-black */
+  --canvas-raised: 34 30 23;
+  --canvas-sunken: 15 13 9;
+  --surface: 34 30 23;
+  --ink: 242 233 214;           /* warm cream */
+  --ink-muted: 176 167 150;
+  --ink-subtle: 128 121 107;
+  --line: 242 233 214;
+  --shadow: 92 82 62;           /* warm taupe — visible on dark, not harsh */
+  /* --accent stays brighter: it's only used as TEXT/stroke on the dark canvas
+     (the "IA", focus ring, status dot). The accent *backgrounds* below stay
+     identical to light so a single fixed text colour clears contrast in both
+     themes: white on blue, near-black (text-on-accent) on yellow/coral/green. */
+  --accent: 124 144 255;
+  --yellow: 255 210 63;
+  --blue: 61 90 254;
+  --coral: 255 92 57;
+  --green: 31 191 87;
+  /* panel stays dark in dark mode too — just a touch deeper than canvas, set
+     off by its border, so the page never goes light at the bottom */
+  --panel: 9 8 5;
+  --panel-ink: 242 233 214;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -36,7 +62,7 @@
 /* -------------------------------------------------------------------------- */
 
 * {
-  border-color: rgb(var(--line) / 0.08);
+  box-sizing: border-box;
 }
 
 html {
@@ -45,16 +71,16 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'ss01', 'ss02', 'cv11';
 }
 
 body {
   background-color: rgb(var(--canvas));
   color: rgb(var(--ink));
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.006em;
+  overflow-x: hidden;
   overscroll-behavior-y: none;
 }
 
@@ -64,78 +90,149 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Typography helpers                                                         */
+/*  Component primitives                                                        */
 /* -------------------------------------------------------------------------- */
 
-.display {
-  font-family: var(--font-display), serif;
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
+@layer components {
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1500px;
+    padding-inline: var(--gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--ink-muted));
+  }
+
+  .label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* the bordered + hard-offset-shadow box that defines the look */
+  .brut {
+    border: 3px solid rgb(var(--line));
+    box-shadow: 5px 5px 0 rgb(var(--shadow));
+    background-color: rgb(var(--surface));
+  }
+  .brut-sm {
+    border: 2px solid rgb(var(--line));
+    box-shadow: 3px 3px 0 rgb(var(--shadow));
+  }
+
+  .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgb(var(--accent));
+  }
+
+  /* press / lift behaviour — applied to interactive .brut elements */
+  .press {
+    transition:
+      transform 0.12s steps(2),
+      box-shadow 0.12s steps(2),
+      border-color 0.15s steps(2),
+      background-color 0.15s steps(2);
+  }
 }
 
-.eyebrow {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgb(var(--ink-muted));
+@media (hover: hover) {
+  .press:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 rgb(var(--shadow));
+  }
 }
-
-.label {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.press:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 rgb(var(--shadow));
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Layout primitives                                                          */
+/*  Kinetic primitives (marker highlight, clip words, caret, ticker)           */
 /* -------------------------------------------------------------------------- */
 
-.container-x {
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1600px;
-}
-
-.rule {
-  border-top: 1px solid rgb(var(--line) / 0.12);
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: rgb(var(--accent));
+.mark {
+  position: relative;
   display: inline-block;
 }
-
-/* -------------------------------------------------------------------------- */
-/*  Lenis                                                                      */
-/* -------------------------------------------------------------------------- */
-
-html.lenis,
-html.lenis body {
-  height: auto;
+.mark > .mark-bg {
+  position: absolute;
+  inset: 2px -5px;
+  background: rgb(var(--yellow));
+  z-index: 0;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.mark.is-coral > .mark-bg {
+  background: rgb(var(--coral));
+}
+.mark > .mark-fg {
+  position: relative;
+  z-index: 1;
+  /* the highlight block is always a light colour (yellow/coral), so the text
+     on top of it is always dark — in both themes. */
+  color: rgb(17 17 17);
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
+.clip {
+  display: inline-block;
   overflow: hidden;
+  vertical-align: top;
+}
+
+.caret {
+  display: inline-block;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Reduced motion                                                             */
+/*  Focus + skip link                                                          */
+/* -------------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 3px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 0.9rem;
+  background: rgb(var(--ink));
+  color: rgb(var(--canvas));
+  text-decoration: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Reduced motion / calm mode (one source of truth)                           */
 /* -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -149,37 +246,24 @@ html.lenis body {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Focus                                                                      */
-/* -------------------------------------------------------------------------- */
-
-:focus-visible {
-  outline: 2px solid rgb(var(--accent));
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 1rem;
-  z-index: 100;
-  padding: 0.5rem 0.75rem;
-  background: rgb(var(--ink));
-  color: rgb(var(--canvas));
-  text-decoration: none;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-}
-.skip-link:focus {
-  top: 1rem;
+html.calm *,
+html.calm *::before,
+html.calm *::after {
+  animation: none !important;
+  transition: none !important;
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Marquee divider                                                            */
+/*  Lenis                                                                       */
 /* -------------------------------------------------------------------------- */
 
-.marquee-mask {
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

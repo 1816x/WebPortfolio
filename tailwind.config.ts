@@ -1,28 +1,48 @@
 import type { Config } from 'tailwindcss';
 
+const withVar = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
   darkMode: 'class',
   content: ['./src/**/*.{ts,tsx,mdx}'],
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
+        display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
         ink: {
-          DEFAULT: 'rgb(var(--ink) / <alpha-value>)',
-          muted: 'rgb(var(--ink-muted) / <alpha-value>)',
-          subtle: 'rgb(var(--ink-subtle) / <alpha-value>)',
+          DEFAULT: withVar('--ink'),
+          muted: withVar('--ink-muted'),
+          subtle: withVar('--ink-subtle'),
         },
         canvas: {
-          DEFAULT: 'rgb(var(--canvas) / <alpha-value>)',
-          raised: 'rgb(var(--canvas-raised) / <alpha-value>)',
-          sunken: 'rgb(var(--canvas-sunken) / <alpha-value>)',
+          DEFAULT: withVar('--canvas'),
+          raised: withVar('--canvas-raised'),
+          sunken: withVar('--canvas-sunken'),
         },
-        accent: 'rgb(var(--accent) / <alpha-value>)',
-        line: 'rgb(var(--line) / <alpha-value>)',
+        surface: withVar('--surface'),
+        panel: withVar('--panel'),
+        'panel-ink': withVar('--panel-ink'),
+        // fixed near-black text for use on the light accent fills (yellow/coral/green) — never flips
+        'on-accent': '#111111',
+        accent: withVar('--accent'),
+        line: withVar('--line'),
+        // neo-brutalist accents
+        brand: {
+          yellow: withVar('--yellow'),
+          blue: withVar('--blue'),
+          coral: withVar('--coral'),
+          green: withVar('--green'),
+        },
+      },
+      boxShadow: {
+        brut: '5px 5px 0 rgb(var(--shadow))',
+        'brut-sm': '3px 3px 0 rgb(var(--shadow))',
+        'brut-lg': '8px 8px 0 rgb(var(--shadow))',
+        'brut-xl': '10px 10px 0 rgb(var(--shadow))',
       },
       spacing: {
         gutter: 'var(--gutter)',
@@ -32,20 +52,20 @@ const config: Config = {
         snug: '-0.015em',
       },
       transitionTimingFunction: {
-        editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        steps2: 'steps(2)',
+        steps3: 'steps(3)',
       },
       animation: {
-        'fade-up': 'fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
         marquee: 'marquee 40s linear infinite',
+        blink: 'blink 1s steps(1) infinite',
       },
       keyframes: {
-        fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(12px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        blink: {
+          '50.01%, 100%': { opacity: '0' },
         },
       },
     },

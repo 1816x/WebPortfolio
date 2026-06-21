@@ -10,6 +10,8 @@
     "about": "About",
     "services": "Services",
     "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
     "skipToContent": "Skip to content"
   },
   "home": {
@@ -29,7 +31,12 @@
     "capabilitiesHeading": "Capabilities",
     "capabilitiesLead": "A working stack — not a wall of logos.",
     "contactHeading": "Let's talk",
-    "contactLead": "If you have a project, a system that is not paying for itself, or a question I can answer in twenty minutes — write."
+    "contactLead": "If you have a project, a system that is not paying for itself, or a question I can answer in twenty minutes — write.",
+    "heroAvailable": "Available for projects",
+    "heroStudioLabel": "Studio",
+    "heroServicesLabel": "Services",
+    "heroBaseLabel": "Base · 2024",
+    "heroGrabHint": "↑ grab the cards"
   },
   "about": {
     "title": "About",
@@ -88,6 +95,8 @@
     "pending": "pending",
     "pendingTooltip": "Placeholder — verified value not yet supplied",
     "theme": "Theme",
+    "reduceMotion": "Reduce motion",
+    "enableMotion": "Enable motion",
     "themeLight": "Light",
     "themeDark": "Dark",
     "themeSystem": "System",

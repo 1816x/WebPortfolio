@@ -9,31 +9,37 @@ export function CapabilitiesGrid() {
   const locale = useLocale() as 'en' | 'es';
 
   return (
-    <section className="container-x py-24 md:py-40 border-t border-line/10">
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 mb-16">
-        <Reveal as="h2" className="md:col-span-7 display text-[clamp(2.5rem,6vw,5rem)] leading-[1] tracking-tightest">
-          {t('capabilitiesHeading')}
-        </Reveal>
-        <Reveal as="p" className="md:col-span-4 md:col-start-9 text-ink-muted text-lg leading-relaxed">
+    <section className="border-t-[3px] border-ink">
+      <div className="container-x py-16 md:py-24">
+        <div className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
+          <span className="dot" />
+          05 — {t('capabilitiesHeading')}
+        </div>
+
+        <p className="mt-6 max-w-[42ch] text-[18px] leading-relaxed text-ink-muted md:text-[20px]">
           {t('capabilitiesLead')}
+        </p>
+
+        <Reveal stagger={0.07} className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+          {site.capabilities.map((cap) => (
+            <div key={cap.id} className="brut bg-surface p-5">
+              <h4 className="mb-3 font-mono text-[12px] tracking-wide text-ink-muted">
+                {cap.title[locale]}
+              </h4>
+              <ul className="flex flex-wrap gap-2">
+                {cap.items.map((it) => (
+                  <li
+                    key={it}
+                    className="border-2 border-ink bg-canvas px-2.5 py-1 text-[13px] leading-none"
+                  >
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </Reveal>
       </div>
-
-      <ul className="grid grid-cols-1 gap-px bg-line/10 border border-line/10 md:grid-cols-2 lg:grid-cols-3">
-        {site.capabilities.map((group) => (
-          <li key={group.id} className="bg-canvas p-8">
-            <p className="label text-ink-subtle mb-4">{group.title[locale]}</p>
-            <ul className="flex flex-wrap gap-x-3 gap-y-2 text-ink">
-              {group.items.map((item, i) => (
-                <li key={item} className="text-base">
-                  {item}
-                  {i < group.items.length - 1 && <span className="text-ink-subtle ml-3">·</span>}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

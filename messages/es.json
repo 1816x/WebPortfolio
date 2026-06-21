@@ -10,6 +10,8 @@
     "about": "Sobre mí",
     "services": "Servicios",
     "contact": "Contacto",
+    "menu": "Menú",
+    "close": "Cerrar",
     "skipToContent": "Saltar al contenido"
   },
   "home": {
@@ -29,7 +31,12 @@
     "capabilitiesHeading": "Capacidades",
     "capabilitiesLead": "Un stack que se usa — no un muro de logos.",
     "contactHeading": "Hablemos",
-    "contactLead": "Si tienes un proyecto, un sistema que no se paga solo, o una pregunta que pueda responder en veinte minutos — escribe."
+    "contactLead": "Si tienes un proyecto, un sistema que no se paga solo, o una pregunta que pueda responder en veinte minutos — escribe.",
+    "heroAvailable": "Disponible para proyectos",
+    "heroStudioLabel": "Estudio",
+    "heroServicesLabel": "Servicios",
+    "heroBaseLabel": "Base · 2024",
+    "heroGrabHint": "↑ agarrá las tarjetas"
   },
   "about": {
     "title": "Sobre mí",
@@ -88,6 +95,8 @@
     "pending": "pendiente",
     "pendingTooltip": "Marcador — falta el valor verificado",
     "theme": "Tema",
+    "reduceMotion": "Reducir movimiento",
+    "enableMotion": "Activar movimiento",
     "themeLight": "Claro",
     "themeDark": "Oscuro",
     "themeSystem": "Sistema",

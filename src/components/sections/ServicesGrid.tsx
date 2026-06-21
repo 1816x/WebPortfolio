@@ -4,45 +4,61 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
 import { site } from '@/content/site';
 
+const NUM_COLORS = [
+  'bg-brand-yellow text-on-accent',
+  'bg-brand-blue text-white',
+  'bg-brand-coral text-on-accent',
+  'bg-brand-green text-on-accent',
+];
+
 export function ServicesGrid() {
   const t = useTranslations('home');
   const ts = useTranslations('services');
   const locale = useLocale() as 'en' | 'es';
 
   return (
-    <section className="container-x py-24 md:py-40 border-t border-line/10">
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 mb-16">
-        <Reveal as="h2" className="md:col-span-7 display text-[clamp(2.5rem,6vw,5rem)] leading-[1] tracking-tightest">
-          {t('servicesHeading')}
-        </Reveal>
-        <Reveal as="p" className="md:col-span-4 md:col-start-9 text-ink-muted text-lg leading-relaxed">
-          {t('servicesLead')}
-        </Reveal>
-      </div>
+    <section className="border-t-[3px] border-ink">
+      <div className="container-x py-16 md:py-24">
+        <div className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
+          <span className="dot" />
+          04 — {t('servicesHeading')}
+        </div>
 
-      <div className="grid grid-cols-1 gap-px bg-line/10 border border-line/10 md:grid-cols-2">
-        {site.services.map((service, idx) => (
-          <article key={service.id} className="bg-canvas p-8 md:p-12">
-            <header className="mb-8 flex items-start justify-between">
-              <h3 className="display text-3xl md:text-4xl tracking-snug">{service.title[locale]}</h3>
-              <span className="label text-ink-subtle">0{idx + 1}</span>
-            </header>
-            <dl className="space-y-6 text-sm leading-relaxed">
-              <div>
-                <dt className="label text-ink-subtle mb-1">{ts('problem')}</dt>
-                <dd className="text-ink-muted">{service.problem[locale]}</dd>
+        <p className="mt-6 max-w-[60ch] text-[17px] leading-relaxed text-ink-muted">
+          {t('servicesLead')}
+        </p>
+
+        <Reveal stagger={0.08} className="mt-10 grid gap-5 md:grid-cols-2">
+          {site.services.map((s, i) => (
+            <div key={s.id} className="brut bg-surface p-6">
+              <div className="mb-5 flex items-center gap-3">
+                <span
+                  className={`grid h-9 w-9 place-items-center border-2 border-ink font-mono font-bold ${NUM_COLORS[i]}`}
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-2xl font-bold tracking-[-0.01em]">{s.title[locale]}</h3>
               </div>
-              <div>
-                <dt className="label text-ink-subtle mb-1">{ts('deliverable')}</dt>
-                <dd className="text-ink-muted">{service.deliverable[locale]}</dd>
-              </div>
-              <div>
-                <dt className="label text-ink-subtle mb-1">{ts('outcome')}</dt>
-                <dd className="text-ink">{service.outcome[locale]}</dd>
-              </div>
-            </dl>
-          </article>
-        ))}
+
+              <dl className="grid grid-cols-[88px_1fr] gap-y-2.5 text-[14px] leading-snug">
+                <dt className="pt-0.5 font-mono text-[10px] uppercase tracking-wide text-ink-subtle">
+                  {ts('problem')}
+                </dt>
+                <dd>{s.problem[locale]}</dd>
+
+                <dt className="pt-0.5 font-mono text-[10px] uppercase tracking-wide text-ink-subtle">
+                  {ts('deliverable')}
+                </dt>
+                <dd>{s.deliverable[locale]}</dd>
+
+                <dt className="pt-0.5 font-mono text-[10px] uppercase tracking-wide text-ink-subtle">
+                  {ts('outcome')}
+                </dt>
+                <dd className="font-bold">{s.outcome[locale]}</dd>
+              </dl>
+            </div>
+          ))}
+        </Reveal>
       </div>
     </section>
   );

@@ -6,53 +6,42 @@ import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { CalmToggle } from './CalmToggle';
 
 const ROUTES = [
-  { href: '/work', key: 'work' },
-  { href: '/about', key: 'about' },
-  { href: '/services', key: 'services' },
-  { href: '/contact', key: 'contact' },
+  { href: '/work', key: 'work', accent: 'hover:bg-brand-blue hover:text-white' },
+  { href: '/about', key: 'about', accent: 'hover:bg-brand-coral hover:text-on-accent' },
+  { href: '/services', key: 'services', accent: 'hover:bg-brand-green hover:text-on-accent' },
+  { href: '/contact', key: 'contact', accent: 'hover:bg-brand-yellow hover:text-on-accent' },
 ] as const;
 
 export function Header() {
   const t = useTranslations('nav');
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-40 transition-all duration-500',
-        scrolled ? 'backdrop-blur-md bg-canvas/80 border-b border-line/10' : 'bg-transparent',
-      )}
-    >
-      <div className="container-x flex h-16 items-center justify-between">
-        <Link href="/" className="font-display text-[20px] leading-none tracking-snug">
-          Santiago <span className="text-accent">·</span> Rivera
+    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-canvas">
+      <div className="container-x flex h-16 items-center justify-between gap-4">
+        <Link href="/" className="inline-flex items-center gap-3 font-bold">
+          <span className="grid h-9 w-9 place-items-center bg-ink font-mono text-[14px] text-canvas">SR</span>
+          <span className="hidden text-[15px] sm:inline">Santiago Rivera</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Primary">
-          {ROUTES.map(({ href, key }) => {
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+          {ROUTES.map(({ href, key, accent }) => {
             const active = pathname === href || pathname.startsWith(href + '/');
             return (
               <Link
-                href={href}
                 key={href}
+                href={href}
+                aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'font-mono text-[11px] uppercase tracking-[0.16em] transition-colors',
-                  active ? 'text-ink' : 'text-ink-muted hover:text-ink',
+                  'border-2 px-3 py-2 text-[12px] font-medium tracking-[0.03em] transition-colors duration-200 ease-steps3',
+                  active ? 'border-ink' : 'border-transparent',
+                  accent,
                 )}
               >
                 {t(key)}
@@ -61,39 +50,48 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-2 md:flex">
           <LocaleSwitcher />
           <ThemeToggle />
+          <CalmToggle />
         </div>
 
         <button
-          className="md:hidden font-mono text-[11px] uppercase tracking-[0.16em]"
+          type="button"
+          className="brut-sm press inline-flex h-9 items-center gap-2 border-2 border-ink bg-surface px-3 font-mono text-[12px] font-bold md:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-expanded={open}
           aria-controls="mobile-nav"
         >
-          {open ? 'Close' : 'Menu'}
+          <span aria-hidden>{open ? '✕' : '☰'}</span>
+          {open ? t('close') : t('menu')}
         </button>
       </div>
 
       {open ? (
-        <div
-          id="mobile-nav"
-          className="md:hidden border-t border-line/10 bg-canvas px-[var(--gutter)] py-6"
-        >
-          <nav className="flex flex-col gap-5" aria-label="Mobile">
-            {ROUTES.map(({ href, key }) => (
-              <Link
-                href={href}
-                key={href}
-                className="font-display text-3xl tracking-snug"
-              >
-                {t(key)}
-              </Link>
-            ))}
-            <div className="flex items-center justify-between pt-4 border-t border-line/10">
+        <div id="mobile-nav" className="border-t-[3px] border-ink bg-canvas md:hidden">
+          <nav className="container-x flex flex-col gap-3 py-6" aria-label="Mobile">
+            {ROUTES.map(({ href, key }) => {
+              const active = pathname === href || pathname.startsWith(href + '/');
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={active ? 'page' : undefined}
+                  className={cn(
+                    'brut press flex items-center justify-between bg-surface px-4 py-4 text-2xl font-bold',
+                    active && 'bg-brand-yellow text-on-accent',
+                  )}
+                >
+                  {t(key)}
+                  <span aria-hidden>→</span>
+                </Link>
+              );
+            })}
+            <div className="flex items-center gap-2 pt-2">
               <LocaleSwitcher />
               <ThemeToggle />
+              <CalmToggle />
             </div>
           </nav>
         </div>
