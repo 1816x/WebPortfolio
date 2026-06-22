@@ -13,16 +13,14 @@ export function LocaleSwitcher() {
 
   const set = (next: 'en' | 'es') => {
     if (next === locale) return;
-    startTransition(() => {
-      router.replace(pathname, { locale: next });
-    });
+    startTransition(() => router.replace(pathname, { locale: next }));
   };
 
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.16em]',
-        pending && 'opacity-50',
+        'brut-sm inline-flex select-none border-2 border-ink bg-brand-yellow font-mono text-[11px] font-bold',
+        pending && 'opacity-60',
       )}
       role="group"
       aria-label="Language"
@@ -30,13 +28,13 @@ export function LocaleSwitcher() {
       {(['es', 'en'] as const).map((l) => (
         <button
           key={l}
-          onClick={() => set(l)}
-          className={cn(
-            'px-2 py-1 rounded transition-colors',
-            locale === l ? 'text-ink' : 'text-ink-muted hover:text-ink',
-          )}
-          aria-current={locale === l}
           type="button"
+          onClick={() => set(l)}
+          aria-pressed={locale === l}
+          className={cn(
+            'px-2.5 py-1.5 uppercase transition-colors ease-steps3',
+            locale === l ? 'bg-ink text-canvas' : 'text-ink hover:bg-ink/10',
+          )}
         >
           {l}
         </button>

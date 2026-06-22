@@ -24,3 +24,7 @@ test-results
 next-env.d.ts
 .idea
 .vscode
+.design-mockups/
+.playwright-mcp/
+santiago-home-es.jpeg
+.claude/

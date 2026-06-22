@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { directa } from '@/content/directa';
 import { PendingBadge } from '@/components/ui/PendingBadge';
 import { ButtonLink } from '@/components/ui/Button';
+import { Reveal } from '@/components/ui/Reveal';
 import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -15,21 +16,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-const block = (
-  label: string,
-  data: { value: { en: string; es: string }; pending?: boolean },
-  l: 'en' | 'es',
-) => (
-  <section className="border-t border-line/10 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8">
-    <p className="label text-ink-subtle md:col-span-3">
-      {label}
-      {data.pending ? <PendingBadge /> : null}
-    </p>
-    <p className="md:col-span-9 display text-2xl md:text-4xl tracking-snug leading-[1.15] max-w-3xl">
-      {data.value[l]}
-    </p>
-  </section>
-);
+const CHIP =
+  'inline-flex h-fit items-center gap-2 self-start border-2 border-ink bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] shadow-brut-sm';
+
+function Block({
+  label,
+  data,
+  l,
+}: {
+  label: string;
+  data: { value: { en: string; es: string }; pending?: boolean };
+  l: 'en' | 'es';
+}) {
+  return (
+    <section className="border-t-[3px] border-ink">
+      <Reveal className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+        <div className={CHIP}>
+          <span className="dot" />
+          {label}
+          {data.pending ? <PendingBadge /> : null}
+        </div>
+        <p className="max-w-[30ch] text-2xl font-bold leading-[1.15] tracking-[-0.02em] md:text-3xl">{data.value[l]}</p>
+      </Reveal>
+    </section>
+  );
+}
 
 export default async function DirectaCase({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -39,83 +50,97 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
   const l = locale as 'en' | 'es';
 
   return (
-    <article className="pt-40 pb-24">
-      <header className="container-x">
-        <p className="eyebrow mb-8">{t('eyebrow')}</p>
-        <h1 className="display text-[clamp(4rem,14vw,16rem)] leading-[0.85] tracking-tightest">
-          Directa
-        </h1>
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-3">
-            <p className="label text-ink-subtle mb-1">{tw('year')}</p>
-            <p>
-              {directa.year.value[l]}
-              {directa.year.pending ? <PendingBadge /> : null}
-            </p>
+    <article>
+      <header className="border-b-[3px] border-ink">
+        <div className="container-x py-16 md:py-24">
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('eyebrow')}
           </div>
-          <div className="md:col-span-5">
-            <p className="label text-ink-subtle mb-1">{t('role')}</p>
-            <p>
-              {directa.role.value[l]}
-              {directa.role.pending ? <PendingBadge /> : null}
-            </p>
+          <h1 className="mt-6 text-[clamp(3.5rem,14vw,11rem)] font-bold leading-[0.82] tracking-[-0.04em]">Directa</h1>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <div className="brut bg-surface p-5">
+              <p className="label mb-1.5 text-ink-subtle">{tw('year')}</p>
+              <p className="font-bold">
+                {directa.year.value[l]}
+                {directa.year.pending ? <PendingBadge /> : null}
+              </p>
+            </div>
+            <div className="brut bg-surface p-5 md:col-span-2">
+              <p className="label mb-1.5 text-ink-subtle">{t('role')}</p>
+              <p className="font-bold">
+                {directa.role.value[l]}
+                {directa.role.pending ? <PendingBadge /> : null}
+              </p>
+            </div>
           </div>
-          <div className="md:col-span-4 md:text-right">
-            <ButtonLink href={directa.url} target="_blank" rel="noreferrer" variant="ghost">
+
+          <div className="mt-6">
+            <ButtonLink href={directa.url} target="_blank" rel="noreferrer" variant="accent">
               {t('visit')}
             </ButtonLink>
           </div>
         </div>
       </header>
 
-      <section className="container-x mt-20">
-        <div className="aspect-[16/9] w-full bg-canvas-sunken flex items-center justify-center">
-          {directa.media.cover.pending ? (
-            <div className="flex flex-col items-center gap-3">
-              <p className="label text-ink-subtle">Cover image</p>
-              <PendingBadge />
-            </div>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={directa.media.cover.value}
-              alt="Directa — cover"
-              className="h-full w-full object-cover"
-            />
-          )}
+      {/* Cover */}
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-12 md:py-16">
+          <div className="brut aspect-[16/9] w-full overflow-hidden bg-canvas-sunken">
+            {directa.media.cover.pending ? (
+              <div className="flex h-full flex-col items-center justify-center gap-3">
+                <span className="label text-ink-subtle">Cover · 16:9</span>
+                <PendingBadge />
+              </div>
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={directa.media.cover.value} alt="Directa — cover" className="h-full w-full object-cover" />
+            )}
+          </div>
         </div>
       </section>
 
-      <div className="container-x mt-20">
-        {block(t('context'), directa.context, l)}
-        {block(t('problem'), directa.problem, l)}
-        {block(t('strategy'), directa.strategy, l)}
-        {block(t('implementation'), directa.implementation, l)}
-        {block(t('design'), directa.design, l)}
+      <Block label={t('context')} data={directa.context} l={l} />
+      <Block label={t('problem')} data={directa.problem} l={l} />
+      <Block label={t('strategy')} data={directa.strategy} l={l} />
+      <Block label={t('implementation')} data={directa.implementation} l={l} />
+      <Block label={t('design')} data={directa.design} l={l} />
 
-        <section className="border-t border-line/10 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8">
-          <p className="label text-ink-subtle md:col-span-3">{t('features')}</p>
-          <ul className="md:col-span-9 space-y-3">
+      {/* Features */}
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('features')}
+          </div>
+          <ul className="grid gap-4 sm:grid-cols-2">
             {directa.features.map((f, i) => (
-              <li key={i} className="text-xl md:text-2xl flex gap-4 items-baseline">
-                <span className="label text-ink-subtle">0{i + 1}</span>
-                <span>
+              <li key={i} className="brut flex items-start gap-3 bg-surface p-4">
+                <span className="font-mono text-[12px] font-bold text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <span className="text-[15px] font-medium">
                   {f.value[l]}
                   {f.pending ? <PendingBadge /> : null}
                 </span>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section className="border-t border-line/10 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8">
-          <p className="label text-ink-subtle md:col-span-3">Gallery</p>
-          <div className="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Gallery */}
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
+          <div className={CHIP}>
+            <span className="dot" />
+            Gallery
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
             {directa.media.gallery.map((g, i) => (
-              <div key={i} className="aspect-[4/3] bg-canvas-sunken flex items-center justify-center">
+              <div key={i} className="brut aspect-[4/3] overflow-hidden bg-canvas-sunken">
                 {g.pending ? (
-                  <div className="flex flex-col items-center gap-2">
-                    <p className="label text-ink-subtle">0{i + 1}</p>
+                  <div className="flex h-full flex-col items-center justify-center gap-2">
+                    <span className="label text-ink-subtle">{String(i + 1).padStart(2, '0')} · 4:3</span>
                     <PendingBadge />
                   </div>
                 ) : (
@@ -125,15 +150,17 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {block(t('outcome'), directa.outcome, l)}
-      </div>
+      <Block label={t('outcome')} data={directa.outcome} l={l} />
 
-      <section className="container-x mt-20">
-        <ButtonLink href={directa.url} target="_blank" rel="noreferrer" variant="primary">
-          {t('visit')}
-        </ButtonLink>
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-14 md:py-20">
+          <ButtonLink href={directa.url} target="_blank" rel="noreferrer" variant="primary">
+            {t('visit')}
+          </ButtonLink>
+        </div>
       </section>
     </article>
   );

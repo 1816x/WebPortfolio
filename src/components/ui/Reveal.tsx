@@ -1,61 +1,53 @@
 'use client';
 
 import { useEffect, useRef, type ElementType, type ReactNode } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, EASE, prefersReduced } from '@/lib/motion';
 
 type Props = {
   children: ReactNode;
   as?: ElementType;
   className?: string;
   delay?: number;
-  /** Reveals each child individually. Best for word/line stacks. */
+  /** Reveals each direct child individually — best for card grids / word stacks. */
   stagger?: number;
   y?: number;
+  ease?: string;
 };
 
-export function Reveal({
-  children,
-  as: Tag = 'div',
-  className,
-  delay = 0,
-  stagger,
-  y = 24,
-}: Props) {
+/**
+ * Scroll-triggered "snap into place" reveal. Objects land with a back.out
+ * overshoot rather than a soft fade — the brutalist signature. Reduced-motion
+ * and calm-mode render the final state instantly.
+ */
+export function Reveal({ children, as: Tag = 'div', className, delay = 0, stagger, y = 30, ease = EASE.snap }: Props) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(stagger ? (node.children as unknown as Element[]) : node, { opacity: 1, y: 0 });
+
+    const targets = stagger ? (Array.from(node.children) as Element[]) : node;
+
+    if (prefersReduced()) {
+      gsap.set(targets, { autoAlpha: 1, y: 0 });
       return;
     }
 
-    const targets = stagger ? (node.children as unknown as Element[]) : node;
     const ctx = gsap.context(() => {
-      gsap.set(targets, { opacity: 0, y });
+      gsap.set(targets, { autoAlpha: 0, y });
       gsap.to(targets, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         delay,
-        duration: 1,
-        ease: 'expo.out',
+        duration: 0.55,
+        ease,
         stagger: stagger ?? 0,
-        scrollTrigger: {
-          trigger: node,
-          start: 'top 85%',
-          once: true,
-        },
+        scrollTrigger: { trigger: node, start: 'top 86%', once: true },
       });
     }, node);
 
     return () => ctx.revert();
-  }, [delay, stagger, y]);
+  }, [delay, stagger, y, ease]);
 
   const Component = Tag as ElementType;
   return (

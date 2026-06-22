@@ -25,7 +25,7 @@ export const site = {
       en: todo('Software developer building web products, automation and AI systems'),
       es: todo('Desarrollador de software construyendo productos web, automatización y sistemas de IA'),
     },
-    location: todo({ en: 'Mexico', es: 'México' }, 'Confirm city from CV'),
+    location: ok({ en: 'San Pedro Garza García, MX', es: 'San Pedro Garza García, MX' }),
     /** Path to the portrait. Replace with the real headshot. */
     portrait: todo('/portrait/santiago.jpg', 'Drop the headshot in /public/portrait/'),
     portraitAlt: {
@@ -38,12 +38,12 @@ export const site = {
   contact: {
     email: ok('saitiago@protonmail.com'),
     /** WhatsApp number in international format, digits only, no plus. */
-    whatsapp: todo('5215555555555', 'Replace with verified WhatsApp number'),
+    whatsapp: ok('528187996456'),
     linkedin: ok('https://www.linkedin.com/in/santiagoxriv/'),
     /** Calendar booking link (Cal.com, Calendly, etc.). */
-    calendar: todo('https://cal.com/santiagorivera', 'Replace with verified calendar URL'),
+    calendar: ok('https://calendly.com/saitiago/30min'),
     /** Path to the downloadable CV PDF inside /public/. */
-    cv: todo('/cv/santiago-rivera-cv.pdf', 'Drop the final CV PDF here'),
+    cv: ok('/cv/santiago-rivera-cv.pdf'),
   },
 
   /** Social handles for footer / metadata. */

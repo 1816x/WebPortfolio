@@ -1,112 +1,103 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { site, isPending, unwrap } from '@/content/site';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
+import { Reveal } from '@/components/ui/Reveal';
+import { Marker } from '@/components/motion/Marker';
+import { CopyButton } from '@/components/ui/CopyButton';
 import { PendingBadge } from '@/components/ui/PendingBadge';
-import { ButtonLink } from '@/components/ui/Button';
+import { site, unwrap, isPending } from '@/content/site';
 
-export function ContactPanel({ compact = false }: { compact?: boolean }) {
-  const t = useTranslations('contact');
-  const th = useTranslations('home');
-  const locale = useLocale() as 'en' | 'es';
-  const [copied, setCopied] = useState(false);
+const ROW =
+  'group flex items-center justify-between gap-4 border-b-2 border-panel-ink/20 py-3 font-mono text-[14px] no-underline transition-colors duration-200 hover:text-brand-yellow';
+const ARROW = 'transition-transform duration-200 group-hover:translate-x-1';
 
-  const channels = [
-    {
-      key: 'email',
-      label: t('email'),
-      value: site.contact.email.value,
-      href: `mailto:${site.contact.email.value}`,
-      pending: isPending(site.contact.email),
-    },
-    {
-      key: 'whatsapp',
-      label: t('whatsapp'),
-      value: `+${unwrap(site.contact.whatsapp)}`,
-      href: `https://wa.me/${unwrap(site.contact.whatsapp)}`,
-      pending: isPending(site.contact.whatsapp),
-    },
-    {
-      key: 'linkedin',
-      label: t('linkedin'),
-      value: '/in/santiagoxriv',
-      href: site.contact.linkedin.value,
-      pending: isPending(site.contact.linkedin),
-    },
-    {
-      key: 'calendar',
-      label: t('calendar'),
-      value: unwrap(site.contact.calendar).replace(/^https?:\/\//, ''),
-      href: unwrap(site.contact.calendar),
-      pending: isPending(site.contact.calendar),
-    },
-  ];
+/** `compact` is accepted for backward compatibility with the contact route; the dark panel renders identically. */
+export function ContactPanel(_props: { compact?: boolean } = {}) {
+  const t = useTranslations('home');
+  const tc = useTranslations('contact');
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(site.contact.email.value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* silent */
-    }
-  };
+  const email = site.contact.email.value;
+  const linkedin = site.contact.linkedin.value;
+  const whatsapp = unwrap(site.contact.whatsapp);
+  const calendar = unwrap(site.contact.calendar);
+
+  // Highlight the last word of the heading with the marker wipe.
+  const headingWords = t('contactHeading').split(' ');
+  const lastWord = headingWords.length > 1 ? headingWords.pop()! : t('contactHeading');
+  const leadWords = headingWords.length > 1 ? `${headingWords.join(' ')} ` : '';
 
   return (
-    <section className={compact ? '' : 'container-x py-24 md:py-40 border-t border-line/10'}>
-      {!compact && (
-        <div className="mb-16 grid grid-cols-1 gap-10 md:grid-cols-12">
-          <h2 className="md:col-span-7 display text-[clamp(2.5rem,6vw,5rem)] leading-[1] tracking-tightest">
-            {th('contactHeading')}
-          </h2>
-          <p className="md:col-span-4 md:col-start-9 text-ink-muted text-lg leading-relaxed">
-            {th('contactLead')}
-          </p>
-        </div>
-      )}
+    <section className="border-t-[3px] border-ink bg-panel text-panel-ink">
+      <div className="container-x py-20 md:py-28">
+        <Reveal>
+          <div className="inline-flex items-center gap-2 border-2 border-panel-ink/40 px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-panel-ink">
+            <span className="dot" />
+            06 — {t('contactHeading')}
+          </div>
 
-      <ul className="rule">
-        {channels.map((c) => (
-          <li
-            key={c.key}
-            className="grid grid-cols-12 items-center gap-4 border-b border-line/10 py-6 md:py-8"
-          >
-            <span className="label text-ink-subtle col-span-3 md:col-span-2">{c.label}</span>
-            <a
-              href={c.href}
-              target={c.key === 'email' ? undefined : '_blank'}
-              rel="noreferrer"
-              className="display col-span-7 md:col-span-7 text-xl md:text-3xl tracking-snug hover:italic hover:text-accent transition-colors"
-            >
-              {c.value}
-              {c.pending ? <PendingBadge /> : null}
-            </a>
-            <span className="col-span-2 md:col-span-3 text-right">
-              {c.key === 'email' ? (
-                <button
-                  onClick={copy}
-                  className="label hover:text-accent transition-colors"
-                  type="button"
-                >
-                  {copied ? t('copied') : t('copy')}
-                </button>
-              ) : (
-                <span className="label text-ink-subtle">→</span>
-              )}
-            </span>
-          </li>
-        ))}
-      </ul>
+          <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+            <div>
+              <h2 className="text-[clamp(2.2rem,5vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+                {leadWords}
+                <Marker color="yellow">{lastWord}</Marker>
+              </h2>
+              <p className="mt-6 max-w-[52ch] text-[17px] leading-relaxed text-panel-ink/70">
+                {t('contactLead')}
+              </p>
+            </div>
 
-      <div className="mt-10 flex flex-wrap items-center gap-4">
-        <ButtonLink
-          href={unwrap(site.contact.cv)}
-          download
-          variant="primary"
-        >
-          {t('cv')} {isPending(site.contact.cv) ? <PendingBadge /> : null}
-        </ButtonLink>
+            <div className="flex flex-col gap-7">
+              <CopyButton
+                value={email}
+                label={`${tc('copy')} email`}
+                done={`${tc('copied')} ✓`}
+                className="w-full self-start border-panel-ink bg-transparent text-panel-ink sm:w-auto"
+              >
+                {'✉ '}
+                {email}
+              </CopyButton>
+
+              <div className="flex flex-col">
+                <a href={linkedin} target="_blank" rel="noreferrer" className={ROW}>
+                  <span className="uppercase tracking-[0.12em]">{tc('linkedin')}</span>
+                  <span aria-hidden className={ARROW}>
+                    /santiagoxriv →
+                  </span>
+                </a>
+
+                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" className={ROW}>
+                  <span className="uppercase tracking-[0.12em]">{tc('whatsapp')}</span>
+                  {isPending(site.contact.whatsapp) ? (
+                    <PendingBadge />
+                  ) : (
+                    <span aria-hidden className={ARROW}>
+                      →
+                    </span>
+                  )}
+                </a>
+
+                <a href={calendar} target="_blank" rel="noreferrer" className={ROW}>
+                  <span className="uppercase tracking-[0.12em]">{tc('calendar')}</span>
+                  {isPending(site.contact.calendar) ? (
+                    <PendingBadge />
+                  ) : (
+                    <span aria-hidden className={ARROW}>
+                      →
+                    </span>
+                  )}
+                </a>
+              </div>
+
+              <Link
+                href="/contact"
+                className="self-start font-mono text-[12px] uppercase tracking-[0.12em] text-panel-ink/70 underline-offset-4 transition-colors duration-200 hover:text-brand-yellow hover:underline"
+              >
+                {tc('title')} →
+              </Link>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

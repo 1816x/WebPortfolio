@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { site, isPending, unwrap } from '@/content/site';
 import { PendingBadge } from '@/components/ui/PendingBadge';
 import { ButtonLink } from '@/components/ui/Button';
+import { Reveal } from '@/components/ui/Reveal';
 import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -11,101 +12,140 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildMetadata({ locale: locale as 'en' | 'es', title: `${t('title')} — Santiago Rivera`, description: t('lede'), path: '/about' });
 }
 
+const SOON = {
+  es: 'Las entradas verificadas aparecerán aquí cuando el CV esté finalizado.',
+  en: 'Verified entries will appear here once the CV is finalized.',
+};
+
+const CHIP = 'inline-flex items-center gap-2 border-2 border-ink bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] shadow-brut-sm';
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('about');
   const l = locale as 'en' | 'es';
+
   const experience = unwrap(site.experience);
   const education = unwrap(site.education);
   const expPending = isPending(site.experience);
   const eduPending = isPending(site.education);
+  const portrait = unwrap(site.person.portrait);
+  const portraitPending = isPending(site.person.portrait);
 
   return (
-    <article className="container-x pt-40 pb-24">
-      <p className="eyebrow mb-8">{t('title')}</p>
-      <h1 className="display text-[clamp(2.5rem,7vw,6rem)] leading-[1] tracking-tightest max-w-5xl">
-        {t('lede')}
-      </h1>
-
-      <div className="mt-24 grid grid-cols-1 gap-16 md:grid-cols-12">
-        <section className="md:col-span-6">
-          <p className="eyebrow mb-4">{t('focusHeading')}</p>
-          <p className="text-lg leading-relaxed text-ink-muted">{t('focusBody')}</p>
-        </section>
-        <section className="md:col-span-6">
-          <p className="eyebrow mb-4">{t('approachHeading')}</p>
-          <p className="text-lg leading-relaxed text-ink-muted">{t('approachBody')}</p>
-        </section>
-      </div>
-
-      <section className="mt-24">
-        <p className="eyebrow mb-4">{t('directaHeading')}</p>
-        <p className="display text-3xl md:text-4xl tracking-snug max-w-3xl leading-tight">
-          {t('directaBody')}{' '}
-          <a href="https://directa.mx" target="_blank" rel="noreferrer" className="italic text-accent hover:underline">
-            directa.mx →
-          </a>
-        </p>
-      </section>
-
-      <section className="mt-24 border-t border-line/10 pt-16">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="display text-3xl md:text-5xl tracking-snug">
-            {t('experienceHeading')}
-            {expPending ? <PendingBadge /> : null}
-          </h2>
+    <article>
+      <header className="container-x grid gap-10 py-16 md:grid-cols-[1fr_320px] md:items-start md:gap-16 md:py-24">
+        <div>
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('title')}
+          </div>
+          <h1 className="mt-6 max-w-[22ch] text-[clamp(2.1rem,5vw,3.8rem)] font-bold leading-[1.05] tracking-[-0.02em]">
+            {t('lede')}
+          </h1>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <ButtonLink href={unwrap(site.contact.cv)} download variant="primary">
+              {t('downloadCv')}
+            </ButtonLink>
+            {isPending(site.contact.cv) ? <PendingBadge /> : null}
+          </div>
         </div>
-        {expPending || experience.length === 0 ? (
-          <p className="text-ink-muted max-w-2xl">
-            Verified experience entries will appear here once the CV is finalized. They live in{' '}
-            <code className="font-mono text-sm">src/content/site.ts</code>.
-          </p>
-        ) : (
-          <ul className="rule">
-            {experience.map((exp, i) => (
-              <li key={i} className="grid grid-cols-12 gap-4 border-b border-line/10 py-8">
-                <span className="label text-ink-subtle col-span-3">{exp.period}</span>
-                <div className="col-span-9">
-                  <p className="display text-2xl tracking-snug">{exp.role[l]}</p>
-                  <p className="label text-ink-muted mt-1">{exp.org}</p>
-                  <p className="mt-3 text-ink-muted max-w-2xl">{exp.summary[l]}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+
+        <div className="brut aspect-[4/5] w-full max-w-[320px] overflow-hidden bg-canvas-sunken">
+          {portraitPending ? (
+            <div className="flex h-full flex-col items-center justify-center gap-3">
+              <span className="label text-ink-subtle">Retrato · Portrait</span>
+              <PendingBadge />
+            </div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={portrait} alt={site.person.portraitAlt[l]} className="h-full w-full object-cover" />
+          )}
+        </div>
+      </header>
+
+      <section className="border-t-[3px] border-ink">
+        <Reveal stagger={0.08} className="container-x grid gap-6 py-14 md:grid-cols-2">
+          <div className="brut bg-surface p-6 md:p-8">
+            <p className="label mb-3 text-ink-subtle">{t('focusHeading')}</p>
+            <p className="text-[16px] leading-relaxed text-ink-muted">{t('focusBody')}</p>
+          </div>
+          <div className="brut bg-surface p-6 md:p-8">
+            <p className="label mb-3 text-ink-subtle">{t('approachHeading')}</p>
+            <p className="text-[16px] leading-relaxed text-ink-muted">{t('approachBody')}</p>
+          </div>
+        </Reveal>
       </section>
 
-      <section className="mt-24 border-t border-line/10 pt-16">
-        <h2 className="display text-3xl md:text-5xl tracking-snug mb-10">
-          {t('educationHeading')}
-          {eduPending ? <PendingBadge /> : null}
-        </h2>
-        {eduPending || education.length === 0 ? (
-          <p className="text-ink-muted max-w-2xl">
-            Education entries will appear here once verified.
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-16 md:py-20">
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('directaHeading')}
+          </div>
+          <p className="mt-6 max-w-[28ch] text-2xl font-bold leading-[1.15] tracking-[-0.02em] md:text-4xl">
+            {t('directaBody')}{' '}
+            <a href="https://directa.mx" target="_blank" rel="noreferrer" className="text-accent underline-offset-4 hover:underline">
+              directa.mx →
+            </a>
           </p>
-        ) : (
-          <ul className="rule">
-            {education.map((ed, i) => (
-              <li key={i} className="grid grid-cols-12 gap-4 border-b border-line/10 py-6">
-                <span className="label text-ink-subtle col-span-3">{ed.period}</span>
-                <div className="col-span-9">
-                  <p className="text-lg">{ed.degree[l]}</p>
-                  <p className="label text-ink-muted mt-1">{ed.org}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        </div>
       </section>
 
-      <div className="mt-16">
-        <ButtonLink href={unwrap(site.contact.cv)} download variant="primary">
-          {t('downloadCv')} {isPending(site.contact.cv) ? <PendingBadge /> : null}
-        </ButtonLink>
-      </div>
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-16 md:py-20">
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('experienceHeading')}
+          </div>
+          {expPending || experience.length === 0 ? (
+            <div className="brut mt-6 flex max-w-2xl items-center gap-3 bg-surface p-5 text-ink-muted">
+              <PendingBadge />
+              <span>{SOON[l]}</span>
+            </div>
+          ) : (
+            <ul className="mt-8 grid gap-5">
+              {experience.map((exp, i) => (
+                <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
+                  <span className="label text-ink-subtle">{exp.period}</span>
+                  <div>
+                    <p className="text-xl font-bold tracking-[-0.01em]">{exp.role[l]}</p>
+                    <p className="label mt-1 text-ink-muted">{exp.org}</p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{exp.summary[l]}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-16 md:py-20">
+          <div className={CHIP}>
+            <span className="dot" />
+            {t('educationHeading')}
+          </div>
+          {eduPending || education.length === 0 ? (
+            <div className="brut mt-6 flex max-w-2xl items-center gap-3 bg-surface p-5 text-ink-muted">
+              <PendingBadge />
+              <span>{SOON[l]}</span>
+            </div>
+          ) : (
+            <ul className="mt-8 grid gap-5">
+              {education.map((ed, i) => (
+                <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
+                  <span className="label text-ink-subtle">{ed.period}</span>
+                  <div>
+                    <p className="text-lg font-bold">{ed.degree[l]}</p>
+                    <p className="label mt-1 text-ink-muted">{ed.org}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
     </article>
   );
 }
