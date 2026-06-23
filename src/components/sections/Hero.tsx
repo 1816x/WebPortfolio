@@ -58,7 +58,8 @@ export function Hero() {
   const tags = site.services.slice(0, 3);
 
   return (
-    <section ref={ref} className="relative border-b-[3px] border-ink">
+    <section ref={ref} className="relative isolate overflow-hidden border-b-[3px] border-ink">
+      <div aria-hidden className="halftone pointer-events-none absolute inset-0 -z-10" />
       <div className="container-x grid min-h-[calc(100svh-4rem)] grid-cols-1 items-center gap-10 py-12 lg:grid-cols-[1.55fr_1fr] lg:gap-12">
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap gap-2.5">

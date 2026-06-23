@@ -9,10 +9,10 @@ import { PendingBadge } from '@/components/ui/PendingBadge';
 import { site, unwrap, isPending } from '@/content/site';
 
 const ROW =
-  'group flex items-center justify-between gap-4 border-b-2 border-panel-ink/20 py-3 font-mono text-[14px] no-underline transition-colors duration-200 hover:text-brand-yellow';
+  'group flex items-center justify-between gap-4 border-b-2 border-white/25 py-3 font-mono text-[14px] no-underline transition-colors duration-200 hover:text-brand-yellow';
 const ARROW = 'transition-transform duration-200 group-hover:translate-x-1';
 
-/** `compact` is accepted for backward compatibility with the contact route; the dark panel renders identically. */
+/** `compact` is accepted for backward compatibility with the contact route; the royal panel renders identically. */
 export function ContactPanel(_props: { compact?: boolean } = {}) {
   const t = useTranslations('home');
   const tc = useTranslations('contact');
@@ -22,17 +22,17 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
   const whatsapp = unwrap(site.contact.whatsapp);
   const calendar = unwrap(site.contact.calendar);
 
-  // Highlight the last word of the heading with the marker wipe.
   const headingWords = t('contactHeading').split(' ');
   const lastWord = headingWords.length > 1 ? headingWords.pop()! : t('contactHeading');
   const leadWords = headingWords.length > 1 ? `${headingWords.join(' ')} ` : '';
 
   return (
-    <section className="border-t-[3px] border-ink bg-panel text-panel-ink">
+    <section className="relative isolate overflow-hidden border-t-[3px] border-ink bg-brand-royal text-white">
+      <div aria-hidden className="halftone-on-royal pointer-events-none absolute inset-0 -z-10" />
       <div className="container-x py-20 md:py-28">
         <Reveal>
-          <div className="inline-flex items-center gap-2 border-2 border-panel-ink/40 px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-panel-ink">
-            <span className="dot" />
+          <div className="inline-flex items-center gap-2 border-2 border-white/50 px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-white">
+            <span className="dot" style={{ background: '#fff' }} />
             06 — {t('contactHeading')}
           </div>
 
@@ -42,9 +42,7 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
                 {leadWords}
                 <Marker color="yellow">{lastWord}</Marker>
               </h2>
-              <p className="mt-6 max-w-[52ch] text-[17px] leading-relaxed text-panel-ink/70">
-                {t('contactLead')}
-              </p>
+              <p className="mt-6 max-w-[52ch] text-[17px] leading-relaxed text-white/80">{t('contactLead')}</p>
             </div>
 
             <div className="flex flex-col gap-7">
@@ -52,7 +50,7 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
                 value={email}
                 label={`${tc('copy')} email`}
                 done={`${tc('copied')} ✓`}
-                className="w-full self-start border-panel-ink bg-transparent text-panel-ink sm:w-auto"
+                className="w-full self-start border-white bg-transparent text-white sm:w-auto"
               >
                 {'✉ '}
                 {email}
@@ -91,7 +89,7 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
 
               <Link
                 href="/contact"
-                className="self-start font-mono text-[12px] uppercase tracking-[0.12em] text-panel-ink/70 underline-offset-4 transition-colors duration-200 hover:text-brand-yellow hover:underline"
+                className="self-start font-mono text-[12px] uppercase tracking-[0.12em] text-white/70 underline-offset-4 transition-colors duration-200 hover:text-brand-yellow hover:underline"
               >
                 {tc('title')} →
               </Link>

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/cn';
-import { ThemeToggle } from './ThemeToggle';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { CalmToggle } from './CalmToggle';
 
@@ -52,7 +51,6 @@ export function Header() {
 
         <div className="hidden items-center gap-2 md:flex">
           <LocaleSwitcher />
-          <ThemeToggle />
           <CalmToggle />
         </div>
 
@@ -90,7 +88,6 @@ export function Header() {
             })}
             <div className="flex items-center gap-2 pt-2">
               <LocaleSwitcher />
-              <ThemeToggle />
               <CalmToggle />
             </div>
           </nav>

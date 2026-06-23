@@ -5,8 +5,6 @@ import type { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
-import { ThemeWipeProvider } from '@/components/providers/ThemeWipeProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { buildMetadata, personJsonLd } from '@/lib/seo';
 import Script from 'next/script';
@@ -41,18 +39,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <ThemeProvider>
-        <ThemeWipeProvider>
-          <SmoothScrollProvider>
-            <a href="#main" className="skip-link">
-              {t('skipToContent')}
-            </a>
-            <Header />
-            <main id="main">{children}</main>
-            <Footer />
-          </SmoothScrollProvider>
-        </ThemeWipeProvider>
-      </ThemeProvider>
+      <SmoothScrollProvider>
+        <a href="#main" className="skip-link">
+          {t('skipToContent')}
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+      </SmoothScrollProvider>
       <Script
         id="ld-person"
         type="application/ld+json"

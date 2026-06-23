@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 /* -------------------------------------------------------------------------- */
-/*  Design tokens — neo-brutalist                                              */
+/*  Design tokens — neo-brutalist, light-only, royal-blue + comic palette      */
 /*  Space-separated RGB so Tailwind can apply <alpha-value>.                   */
 /* -------------------------------------------------------------------------- */
 
 :root {
-  /* Light — warm cream paper, hard ink, four loud accents */
   --canvas: 251 244 228;        /* #FBF4E4 cream page */
   --canvas-raised: 255 255 255; /* white surface */
   --canvas-sunken: 244 235 214; /* deeper cream */
@@ -18,43 +17,19 @@
   --ink-subtle: 132 126 114;
   --line: 17 17 17;
   --shadow: 17 17 17;           /* hard offset shadow colour */
-  --accent: 61 90 254;          /* primary accent = electric blue */
+
+  /* royal blue — the lead accent (comic primary blue) */
+  --royal: 39 70 208;           /* #2746D0 */
+  --royal-deep: 22 42 140;      /* #162A8C */
+  --accent: 39 70 208;          /* primary accent = royal blue */
+  --blue: 39 70 208;            /* bg-brand-blue -> royal */
   --yellow: 255 210 63;         /* #FFD23F */
-  --blue: 61 90 254;            /* #3D5AFE */
   --coral: 255 92 57;           /* #FF5C39 */
   --green: 31 191 87;           /* #1FBF57 */
-  --panel: 17 17 17;            /* always-dark inverse panel (contact/footer/ticker) */
+
+  --panel: 17 17 17;            /* dark inverse panel (contact/footer/ticker) */
   --panel-ink: 251 244 228;     /* light text that lives on the panel */
   --gutter: clamp(1.1rem, 3.5vw, 2.5rem);
-}
-
-.dark {
-  /* Dark — warm graphite, cream ink, accents nudged brighter for legibility.
-     The hard "shadow" becomes a warm taupe so the offset still reads as a
-     deliberate risograph double-print instead of a glaring slab or an
-     invisible black block. */
-  --canvas: 22 19 14;           /* warm near-black */
-  --canvas-raised: 34 30 23;
-  --canvas-sunken: 15 13 9;
-  --surface: 34 30 23;
-  --ink: 242 233 214;           /* warm cream */
-  --ink-muted: 176 167 150;
-  --ink-subtle: 128 121 107;
-  --line: 242 233 214;
-  --shadow: 92 82 62;           /* warm taupe — visible on dark, not harsh */
-  /* --accent stays brighter: it's only used as TEXT/stroke on the dark canvas
-     (the "IA", focus ring, status dot). The accent *backgrounds* below stay
-     identical to light so a single fixed text colour clears contrast in both
-     themes: white on blue, near-black (text-on-accent) on yellow/coral/green. */
-  --accent: 124 144 255;
-  --yellow: 255 210 63;
-  --blue: 61 90 254;
-  --coral: 255 92 57;
-  --green: 31 191 87;
-  /* panel stays dark in dark mode too — just a touch deeper than canvas, set
-     off by its border, so the page never goes light at the bottom */
-  --panel: 9 8 5;
-  --panel-ink: 242 233 214;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -85,8 +60,8 @@ body {
 }
 
 ::selection {
-  background: rgb(var(--ink));
-  color: rgb(var(--canvas));
+  background: rgb(var(--royal));
+  color: #fff;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -157,6 +132,24 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Comic ben-day / halftone dots (royal blue)                                 */
+/* -------------------------------------------------------------------------- */
+
+.halftone {
+  background-image: radial-gradient(rgb(var(--royal) / 0.16) 1.7px, transparent 1.9px);
+  background-size: 13px 13px;
+}
+.halftone-strong {
+  background-image: radial-gradient(rgb(var(--royal) / 0.32) 2.1px, transparent 2.3px);
+  background-size: 12px 12px;
+}
+/* halftone tuned to sit on a royal-blue surface (lighter dots) */
+.halftone-on-royal {
+  background-image: radial-gradient(rgb(255 255 255 / 0.16) 2px, transparent 2.2px);
+  background-size: 13px 13px;
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Kinetic primitives (marker highlight, clip words, caret, ticker)           */
 /* -------------------------------------------------------------------------- */
 
@@ -175,12 +168,17 @@ body {
 .mark.is-coral > .mark-bg {
   background: rgb(var(--coral));
 }
+.mark.is-royal > .mark-bg {
+  background: rgb(var(--royal));
+}
 .mark > .mark-fg {
   position: relative;
   z-index: 1;
-  /* the highlight block is always a light colour (yellow/coral), so the text
-     on top of it is always dark — in both themes. */
   color: rgb(17 17 17);
+}
+/* on a royal highlight the text must be light */
+.mark.is-royal > .mark-fg {
+  color: #fff;
 }
 
 .clip {

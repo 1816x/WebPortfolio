@@ -47,16 +47,6 @@ test.describe('santiagorivera.com — smoke', () => {
     await expect(page.locator('footer a[href*="linkedin"]').first()).toBeVisible();
   });
 
-  test('theme toggle flips the html class', async ({ page }) => {
-    await page.goto('/en');
-    await openMobileNav(page);
-    const before = await page.evaluate(() => document.documentElement.className);
-    await page.getByRole('button', { name: /Theme/i }).filter({ visible: true }).first().click();
-    await expect
-      .poll(() => page.evaluate(() => document.documentElement.className), { timeout: 8_000 })
-      .not.toBe(before);
-  });
-
   test('sitemap.xml served', async ({ request }) => {
     expect((await request.get('/sitemap.xml')).ok()).toBeTruthy();
   });

@@ -19,7 +19,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t-[3px] border-ink bg-panel text-panel-ink">
+    <footer className="border-t-[3px] border-ink bg-brand-royal-deep text-panel-ink">
       <div className="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12">
         <div className="md:col-span-6">
           <p className="max-w-xl text-3xl font-bold leading-[1.06] md:text-4xl">{t('tagline')}</p>

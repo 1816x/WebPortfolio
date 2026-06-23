@@ -3,7 +3,6 @@ import type { Config } from 'tailwindcss';
 const withVar = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
 
 const config: Config = {
-  darkMode: 'class',
   content: ['./src/**/*.{ts,tsx,mdx}'],
   theme: {
     extend: {
@@ -34,6 +33,8 @@ const config: Config = {
         brand: {
           yellow: withVar('--yellow'),
           blue: withVar('--blue'),
+          royal: withVar('--royal'),
+          'royal-deep': withVar('--royal-deep'),
           coral: withVar('--coral'),
           green: withVar('--green'),
         },
