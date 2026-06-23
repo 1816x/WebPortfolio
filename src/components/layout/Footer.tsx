@@ -23,7 +23,7 @@ export function Footer() {
       <div className="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12">
         <div className="md:col-span-6">
           <p className="max-w-xl text-3xl font-bold leading-[1.06] md:text-4xl">{t('tagline')}</p>
-          <p className="mt-6 font-mono text-[12px] tracking-[0.1em] text-panel-ink/55">DIRECTA — DIRECTA.MX</p>
+          <p className="mt-6 font-mono text-[12px] tracking-[0.1em] text-panel-ink/65">DIRECTA — DIRECTA.MX</p>
         </div>
 
         <nav className="md:col-span-3" aria-label="Footer">

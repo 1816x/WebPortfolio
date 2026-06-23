@@ -11,6 +11,17 @@ async function openMobileNav(page: Page) {
   }
 }
 
+/**
+ * next-intl's <Link> does client-side navigation, which only works once React
+ * has hydrated. Under parallel test load against a single server, a tap can
+ * land in the pre-hydration window and be swallowed. Wait for the network to
+ * settle (chunks loaded → hydration triggered) before interacting.
+ */
+async function gotoReady(page: Page, path: string) {
+  await page.goto(path);
+  await page.waitForLoadState('networkidle');
+}
+
 test.describe('santiagorivera.com — smoke', () => {
   // Deterministic: reveals paint immediately and motion is instant, so
   // scroll-gated content (e.g. the work card) is clickable without scrolling.
@@ -27,14 +38,14 @@ test.describe('santiagorivera.com — smoke', () => {
   });
 
   test('locale switch flips to English', async ({ page }) => {
-    await page.goto('/es');
+    await gotoReady(page, '/es');
     await openMobileNav(page);
     await page.getByRole('button', { name: 'en' }).filter({ visible: true }).first().click();
     await expect(page).toHaveURL(/\/en(\/|$)/);
   });
 
   test('Directa case study reachable from work index', async ({ page }) => {
-    await page.goto('/en/work');
+    await gotoReady(page, '/en/work');
     await page.getByRole('link', { name: /Directa/i }).first().click();
     await expect(page).toHaveURL(/\/work\/directa/);
     await expect(page.getByRole('link', { name: /directa\.mx/i }).first()).toBeVisible();

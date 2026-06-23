@@ -89,7 +89,7 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
 
               <Link
                 href="/contact"
-                className="self-start font-mono text-[12px] uppercase tracking-[0.12em] text-white/70 underline-offset-4 transition-colors duration-200 hover:text-brand-yellow hover:underline"
+                className="self-start font-mono text-[12px] uppercase tracking-[0.12em] text-white/80 underline-offset-4 transition-colors duration-200 hover:text-brand-yellow hover:underline"
               >
                 {tc('title')} →
               </Link>

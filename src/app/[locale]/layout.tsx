@@ -51,7 +51,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         id="ld-person"
         type="application/ld+json"
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(locale as 'en' | 'es')) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(locale as 'en' | 'es')).replace(/</g, '\\u003c') }}
       />
       {site.analytics.plausibleDomain ? (
         <Script

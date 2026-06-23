@@ -210,7 +210,9 @@ export const site = {
   /** Analytics hooks read from env vars; null if unset. */
   analytics: {
     plausibleDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || null,
-    gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || null,
+    gaMeasurementId: /^G-[A-Z0-9]{4,15}$/.test(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? '')
+      ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!
+      : null,
   },
 } as const;
 
