@@ -8,9 +8,10 @@ import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'directa' });
   return buildMetadata({
     locale: locale as 'en' | 'es',
-    title: `Directa — Case study — Santiago Rivera`,
+    title: `Directa — ${t('eyebrow')} — Santiago Rivera`,
     description: directa.context.value[locale as 'en' | 'es'],
     path: '/work/directa',
   });
@@ -133,7 +134,7 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
         <div className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
           <div className={CHIP}>
             <span className="dot" />
-            Gallery
+            {t('gallery')}
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             {directa.media.gallery.map((g, i) => (

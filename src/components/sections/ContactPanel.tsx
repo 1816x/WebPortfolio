@@ -19,6 +19,7 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
 
   const email = site.contact.email.value;
   const linkedin = site.contact.linkedin.value;
+  const github = unwrap(site.social.github);
   const whatsapp = unwrap(site.contact.whatsapp);
   const calendar = unwrap(site.contact.calendar);
 
@@ -63,6 +64,15 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
                     /santiagoxriv →
                   </span>
                 </a>
+
+                {github && !isPending(site.social.github) ? (
+                  <a href={github} target="_blank" rel="noreferrer" className={ROW}>
+                    <span className="uppercase tracking-[0.12em]">{tc('github')}</span>
+                    <span aria-hidden className={ARROW}>
+                      /1816x →
+                    </span>
+                  </a>
+                ) : null}
 
                 <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" className={ROW}>
                   <span className="uppercase tracking-[0.12em]">{tc('whatsapp')}</span>
