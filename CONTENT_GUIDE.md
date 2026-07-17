@@ -30,10 +30,10 @@ A small "pending" badge renders in the UI for every wrapped field still marked
 | `social`           | Footer / metadata social links                     |
 | `services`         | The four service blocks (Problem / Deliverable / Outcome) |
 | `capabilities`     | Capability groups and tags                         |
-| `work`             | Featured projects list                             |
+| `work`             | Featured case studies (each with a dedicated page) |
+| `projects`         | Public GitHub repos shown on the Work page (external links) |
 | `experience`       | Work history (initially `pending`)                 |
 | `education`        | Education (initially `pending`)                    |
-| `visual`           | Whether the WebGL signature mounts                 |
 | `analytics`        | Read from env vars                                 |
 
 ## 2. `src/content/directa.ts`
@@ -67,6 +67,13 @@ If you add a new namespace (top-level key) in one file, add it to both.
 3. Create a case-study page at `src/app/[locale]/work/<slug>/page.tsx`
    (the Directa page is a good template to copy).
 4. The layout adapts automatically — no other code changes required.
+
+For a **public GitHub repo** that should appear as an external card (not a full
+case study), append to `projects` in `site.ts` instead — each entry is
+`{ slug, name, repo, url, year, language, accent ('blue'|'coral'|'green'|'yellow'),
+wip, summary: { en, es }, tags }`. It renders in the "Open work on GitHub"
+section of the Work page and links straight to GitHub. Only list **public**
+repositories.
 
 ## 5. Replacing the CV or portrait
 

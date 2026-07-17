@@ -270,16 +270,6 @@ export const site = {
     }>
   >([], 'Populate from CV when finalized'),
 
-  /**
-   * Visual signature configuration for the WebGPU hero field.
-   * Off-switch in case of GPU/perf issues on a particular device.
-   */
-  visual: {
-    enableSignatureField: true,
-    /** Whether to attempt WebGPURenderer before falling back to WebGL2. */
-    preferWebGPU: true,
-  },
-
   /** Analytics hooks read from env vars; null if unset. */
   analytics: {
     plausibleDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || null,

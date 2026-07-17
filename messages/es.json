@@ -1,8 +1,7 @@
 {
   "meta": {
     "title": "Santiago Rivera — Software, web, automatización e IA",
-    "description": "Santiago Rivera construye productos web, automatización y sistemas de IA. Fundador de Directa.",
-    "ogAlt": "Santiago Rivera — Portafolio"
+    "description": "Santiago Rivera construye productos web, automatización y sistemas de IA. Fundador de Directa."
   },
   "nav": {
     "home": "Inicio",
@@ -15,7 +14,6 @@
     "skipToContent": "Saltar al contenido"
   },
   "home": {
-    "heroEyebrow": "Independiente — desde México",
     "heroLineA": "Software,",
     "heroLineB": "web, automatización",
     "heroLineC": "y sistemas de IA.",
@@ -101,22 +99,14 @@
   "common": {
     "pending": "pendiente",
     "pendingTooltip": "Marcador — falta el valor verificado",
-    "theme": "Tema",
     "reduceMotion": "Reducir movimiento",
     "enableMotion": "Activar movimiento",
-    "themeLight": "Claro",
-    "themeDark": "Oscuro",
-    "themeSystem": "Sistema",
-    "language": "Idioma",
-    "scrollHint": "Desliza",
-    "backHome": "Volver al inicio"
+    "language": "Idioma"
   },
   "footer": {
     "tagline": "Práctica independiente. Disponible para trabajos seleccionados.",
     "rights": "Todos los derechos reservados.",
-    "builtWith": "Hecho por Santiago Rivera.",
-    "colophonHeading": "Colofón",
-    "colophonBody": "Tipografía con una serif contemporánea y una grotesca. Construido con Next.js, Three.js y GSAP."
+    "builtWith": "Hecho por Santiago Rivera."
   },
   "notFound": {
     "title": "No encontrado",

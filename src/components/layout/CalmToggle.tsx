@@ -37,6 +37,7 @@ export function CalmToggle() {
       type="button"
       onClick={toggle}
       aria-pressed={calm}
+      aria-label={calm ? t('enableMotion') : t('reduceMotion')}
       title={calm ? t('enableMotion') : t('reduceMotion')}
       className={cn(
         'brut-sm press inline-flex h-9 items-center gap-1.5 border-2 border-ink px-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em]',

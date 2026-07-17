@@ -24,8 +24,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-canvas">
       <div className="container-x flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="inline-flex items-center gap-3 font-bold">
-          <span className="grid h-9 w-9 place-items-center bg-ink font-mono text-[14px] text-canvas">SR</span>
+        <Link href="/" aria-label={`Santiago Rivera — ${t('home')}`} className="inline-flex items-center gap-3 font-bold">
+          <span aria-hidden className="grid h-9 w-9 place-items-center bg-ink font-mono text-[14px] text-canvas">SR</span>
           <span className="hidden text-[15px] sm:inline">Santiago Rivera</span>
         </Link>
 

@@ -1,11 +1,11 @@
 # santiagorivera.com
 
 Personal portfolio for **Santiago Rivera** — software developer, founder of
-[Directa](https://directa.mx). Bilingual (Spanish / English), light + dark mode,
-editorial layout with a restrained WebGL signature visual.
+[Directa](https://directa.mx). Bilingual (Spanish / English), light-only
+neo-brutalist editorial layout with an interactive DOM hero card-stack.
 
 > Built with Next.js 15 (App Router) · TypeScript · Tailwind · next-intl ·
-> next-themes · GSAP + ScrollTrigger · Lenis · react-three-fiber · Framer Motion.
+> GSAP + ScrollTrigger · Lenis.
 
 ---
 
@@ -50,11 +50,11 @@ src/
     icon.tsx             # generated favicon
     opengraph-image.tsx  # generated OG card
   components/
-    layout/              # Header, Footer, ThemeToggle, LocaleSwitcher
+    layout/              # Header, Footer, CalmToggle, LocaleSwitcher
     sections/            # Hero, IntroBlock, WorkPreview, ServicesGrid, etc.
-    three/               # SignatureField — the one 3D visual
+    motion/              # CardStack (hero), Ticker, Marker, Magnetic
     ui/                  # Button, Reveal, PendingBadge
-    providers/           # ThemeProvider, SmoothScrollProvider (Lenis + GSAP)
+    providers/           # SmoothScrollProvider (Lenis + GSAP)
   content/
     site.ts              # ⭐ single source of truth for editable content
     directa.ts           # Directa case-study copy
@@ -95,15 +95,15 @@ Anything not yet verified is marked `pending: true` in `src/content/site.ts`
 and `src/content/directa.ts`. The UI renders a small "pending" badge on every
 such field so unverified claims never ship silently.
 
-Current pending items at first commit:
+Current outstanding items:
 
 - Portrait (`public/portrait/santiago.jpg`)
-- CV PDF (`public/cv/santiago-rivera-cv.pdf`)
-- WhatsApp number
-- Calendar URL
 - Directa screenshots in `public/work/directa/`
 - Directa case-study copy (context, problem, strategy, etc.)
 - Experience and education arrays
+- Person role / positioning line and the Directa year
+
+(WhatsApp number, calendar URL and the CV PDF are already finalized.)
 
 When you replace a value, also flip its `pending` to `false` (or remove the
 wrapper for fields whose entire wrapper is the placeholder).

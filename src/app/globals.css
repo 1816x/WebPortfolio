@@ -211,6 +211,9 @@ body {
 :focus-visible {
   outline: 3px solid rgb(var(--accent));
   outline-offset: 2px;
+  /* cream halo keeps the ring visible on royal / ink dark surfaces too, where
+     the royal accent outline alone would disappear */
+  box-shadow: 0 0 0 5px rgb(var(--canvas) / 0.9);
 }
 
 .skip-link {

@@ -1,8 +1,7 @@
 {
   "meta": {
     "title": "Santiago Rivera — Software, web, automation, AI",
-    "description": "Santiago Rivera builds web products, automation and AI systems. Founder of Directa.",
-    "ogAlt": "Santiago Rivera — Portfolio"
+    "description": "Santiago Rivera builds web products, automation and AI systems. Founder of Directa."
   },
   "nav": {
     "home": "Index",
@@ -15,7 +14,6 @@
     "skipToContent": "Skip to content"
   },
   "home": {
-    "heroEyebrow": "Independent — based in México",
     "heroLineA": "Software,",
     "heroLineB": "web, automation",
     "heroLineC": "and AI systems.",
@@ -101,22 +99,14 @@
   "common": {
     "pending": "pending",
     "pendingTooltip": "Placeholder — verified value not yet supplied",
-    "theme": "Theme",
     "reduceMotion": "Reduce motion",
     "enableMotion": "Enable motion",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "themeSystem": "System",
-    "language": "Language",
-    "scrollHint": "Scroll",
-    "backHome": "Back to home"
+    "language": "Language"
   },
   "footer": {
     "tagline": "Independent practice. Available for selected work.",
     "rights": "All rights reserved.",
-    "builtWith": "Built by Santiago Rivera.",
-    "colophonHeading": "Colophon",
-    "colophonBody": "Type set in a contemporary serif and grotesque sans. Built with Next.js, Three.js and GSAP."
+    "builtWith": "Built by Santiago Rivera."
   },
   "notFound": {
     "title": "Not found",
