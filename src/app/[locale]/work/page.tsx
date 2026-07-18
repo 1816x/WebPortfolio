@@ -52,9 +52,9 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
                       {String(i + 1).padStart(2, '0')} · {p.year.value}
                       {p.year.pending ? <PendingBadge /> : null}
                     </div>
-                    <div className="mt-3 text-[clamp(2.6rem,6vw,5.2rem)] font-bold leading-[0.9] tracking-[-0.03em]">
+                    <h2 className="mt-3 text-[clamp(2.6rem,6vw,5.2rem)] font-bold leading-[0.9] tracking-[-0.03em]">
                       {p.name}
-                    </div>
+                    </h2>
                   </div>
                   <div>
                     <p className="text-[16px] leading-relaxed text-white/90">{p.summary[l]}</p>

@@ -19,10 +19,10 @@ export function ServicesGrid() {
   return (
     <section className="border-t-[3px] border-ink">
       <div className="container-x py-16 md:py-24">
-        <div className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
+        <h2 className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
           <span className="dot" />
           04 — {t('servicesHeading')}
-        </div>
+        </h2>
 
         <p className="mt-6 max-w-[60ch] text-[17px] leading-relaxed text-ink-muted">
           {t('servicesLead')}
