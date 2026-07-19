@@ -40,5 +40,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      # Playwright config runs two projects: Desktop Chrome (chromium) and
+      # iPhone 13 (webkit) — install both engines, not just chromium.
+      - run: pnpm exec playwright install --with-deps chromium webkit
       - run: pnpm test:e2e
