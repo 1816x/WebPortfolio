@@ -17,10 +17,10 @@ export function IntroBlock() {
   return (
     <section className="border-t-[3px] border-ink">
       <div className="container-x py-16 md:py-24">
-        <div className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
+        <h2 className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
           <span className="dot" />
           02 — {t('introHeading')}
-        </div>
+        </h2>
 
         <Reveal className="mt-8 md:mt-12" y={36}>
           <p className="mb-5 text-[clamp(1.05rem,2vw,1.35rem)] font-bold leading-[1.2] tracking-[-0.01em]">

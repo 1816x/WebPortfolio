@@ -1,26 +1,38 @@
 import type { Metadata } from 'next';
-import { site } from '@/content/site';
+import { site, isPending, unwrap } from '@/content/site';
+import { getPathname, routing, type Pathnames } from '@/i18n/routing';
 
 type BuildArgs = {
   locale: 'en' | 'es';
   title: string;
   description: string;
-  path?: string;
+  /** Internal routing key (e.g. '/work'); the localized public URL is derived per locale. */
+  path?: Pathnames;
 };
+
+/** Resolve the absolute, locale-aware public URL for a routing key. */
+function localizedUrl(base: string, locale: 'en' | 'es', path: Pathnames): string {
+  return `${base}${getPathname({ locale, href: path })}`;
+}
 
 export function buildMetadata({ locale, title, description, path = '/' }: BuildArgs): Metadata {
   const base = process.env.NEXT_PUBLIC_SITE_URL || site.url;
-  const url = `${base}/${locale}${path === '/' ? '' : path}`;
+  const url = localizedUrl(base, locale, path);
+
+  // hreflang alternates must point at each locale's REAL localized path
+  // (e.g. /es/trabajo, not /es/work) or they 404 and the SEO signal is wrong.
+  const languages: Record<string, string> = Object.fromEntries(
+    routing.locales.map((l) => [l, localizedUrl(base, l, path)]),
+  );
+  languages['x-default'] = localizedUrl(base, routing.defaultLocale, path);
+
   return {
     metadataBase: new URL(base),
     title,
     description,
     alternates: {
       canonical: url,
-      languages: {
-        en: `${base}/en${path === '/' ? '' : path}`,
-        es: `${base}/es${path === '/' ? '' : path}`,
-      },
+      languages,
     },
     openGraph: {
       type: 'website',
@@ -40,13 +52,17 @@ export function buildMetadata({ locale, title, description, path = '/' }: BuildA
 }
 
 export function personJsonLd(locale: 'en' | 'es') {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || site.url;
+  const role = site.person.role[locale];
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: site.person.name,
-    url: site.url,
-    sameAs: [site.social.linkedin.value].filter(Boolean),
-    jobTitle: site.person.role[locale].value,
+    url: base,
+    sameAs: [site.social.linkedin.value, site.social.github.value, site.social.x.value].filter(Boolean),
+    // Only emit a verified job title — JSON-LD has no "pending" badge, so an
+    // unconfirmed role would ship as a hard claim.
+    ...(isPending(role) ? {} : { jobTitle: unwrap(role) }),
     worksFor: {
       '@type': 'Organization',
       name: 'Directa',

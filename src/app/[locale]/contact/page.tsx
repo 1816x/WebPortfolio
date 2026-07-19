@@ -13,5 +13,6 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   // The neo-brutalist ContactPanel is a full, self-contained dark section.
-  return <ContactPanel />;
+  // As the page root it owns the <h1> (on the home page it renders an <h2>).
+  return <ContactPanel asPageHeading />;
 }

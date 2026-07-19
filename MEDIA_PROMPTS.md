@@ -16,7 +16,7 @@ image‑light, so generating *less* is the right call.
 | --- | --- | --- |
 | **Portrait** | `public/portrait/santiago.jpg` · 4:5 · ≥1600px | **Use your real photo.** Optionally *restyle* it with Gemini (prompt A). Never AI‑invent a face. |
 | **Directa screenshots** | `public/work/directa/{cover,01,02,03}.jpg` | **Use real captures of directa.mx.** Only generate the temp placeholders (prompt C) until you have them — and replace before launch. |
-| **OG / social card** | `src/app/opengraph-image.tsx` (1200×630) | **Keep it code‑generated, not Gemini** — image models garble text. (It's still in the old editorial style — ask me to restyle it to neo‑brutalist.) |
+| **OG / social card** | `src/app/opengraph-image.tsx` (1200×630) | **Keep it code‑generated, not Gemini** — image models garble text. Already in the neo‑brutalist style (cream/ink/royal + the "SR" lockup). |
 | **Favicon** | `src/app/icon.tsx` | Already code‑generated. Only make a custom one if you want (prompt D). |
 | **Abstract textures/accents** | optional, `public/art/` | Fair game for Gemini (prompt B) — but use sparingly; the brand avoids decoration. |
 
@@ -33,8 +33,8 @@ image‑light, so generating *less* is the right call.
 STYLE: neo-brutalist, flat vector + risograph print, hard 3px black outlines,
 hard OFFSET solid shadow (no blur), bold geometric, high contrast, halftone dots,
 subtle paper grain, limited palette.
-PALETTE: cream #FBF4E4, ink #111111, electric blue #3D5AFE, signal yellow #FFD23F,
-coral #FF5C39, green #1FBF57. (dark variant background: graphite #161310)
+PALETTE: cream #FBF4E4, ink #111111, royal blue #2746D0, signal yellow #FFD23F,
+coral #FF5C39, green #1FBF57.
 AVOID: gradients, soft glow, blurred drop shadows, lens flare, glossy 3D render,
 photorealism, neon, busy detail, any text/letters/words.
 ```
@@ -49,7 +49,7 @@ Run this on your **actual headshot**. Keeps your likeness, gives it the brand lo
 ```
 Edit this photo into a high-contrast two-tone (duotone) editorial portrait.
 Convert it to a bold halftone / risograph print look using ONLY deep ink black
-#111111 and warm cream #FBF4E4, with a single electric-blue #3D5AFE accent on the
+#111111 and warm cream #FBF4E4, with a single royal-blue #2746D0 accent on the
 shadows. Hard posterized edges, visible halftone dots, no gradients, no blur.
 Keep my face, likeness and pose; vertical 4:5 crop, plain cream background.
 Flat, graphic, confident.
@@ -62,7 +62,7 @@ Flat, graphic, confident.
 Flat neo-brutalist abstract composition: bold geometric shapes (rectangles,
 circles, plus/cross marks, arrows) with thick 3px black outlines and hard offset
 solid-black shadows, arranged on a warm cream #FBF4E4 background. Limited palette:
-electric blue #3D5AFE, signal yellow #FFD23F, coral #FF5C39. Risograph print
+royal blue #2746D0, signal yellow #FFD23F, coral #FF5C39. Risograph print
 texture, slight paper grain, halftone dots. High contrast, no gradients, no glow,
 no text. Square, balanced negative space.
 ```
@@ -78,7 +78,7 @@ Cover (16:9):
 Neo-brutalist illustration of a browser window frame with a thick 3px black
 outline and a hard offset solid shadow, sitting on a cream #FBF4E4 background.
 Inside the window: an abstract minimal website layout built from solid color
-blocks (cream, electric blue #3D5AFE, yellow #FFD23F, coral #FF5C39) — placeholder
+blocks (cream, royal blue #2746D0, yellow #FFD23F, coral #FF5C39) — placeholder
 bars and rectangles only, NO readable text. Flat vector, risograph grain, high
 contrast, no gradients. 16:9.
 ```
@@ -100,7 +100,7 @@ cream background.
 
 ## 4. Workflow checklist
 1. Generate in **Gemini app / AI Studio**; set the aspect ratio in the prompt **and** the tool (4:5 portrait, 16:9 cover, 4:3 gallery, 1:1 textures).
-2. If a result has stray text or wrong color, say "remove all text, use exactly #3D5AFE/#FFD23F/#FF5C39 on #FBF4E4" and regenerate.
+2. If a result has stray text or wrong color, say "remove all text, use exactly #2746D0/#FFD23F/#FF5C39 on #FBF4E4" and regenerate.
 3. Optimize (e.g. squoosh.app) — JPG for photos/placeholders, PNG for graphics with transparency.
 4. Drop the file at the exact path above.
 5. Open `src/content/site.ts` / `src/content/directa.ts`, replace the path if needed and set `pending: false` so the "pending" badge disappears.

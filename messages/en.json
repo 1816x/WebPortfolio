@@ -1,8 +1,7 @@
 {
   "meta": {
     "title": "Santiago Rivera — Software, web, automation, AI",
-    "description": "Santiago Rivera builds web products, automation and AI systems. Founder of Directa.",
-    "ogAlt": "Santiago Rivera — Portfolio"
+    "description": "Santiago Rivera builds web products, automation and AI systems. Founder of Directa."
   },
   "nav": {
     "home": "Index",
@@ -15,7 +14,6 @@
     "skipToContent": "Skip to content"
   },
   "home": {
-    "heroEyebrow": "Independent — based in México",
     "heroLineA": "Software,",
     "heroLineB": "web, automation",
     "heroLineC": "and AI systems.",
@@ -53,12 +51,17 @@
   },
   "work": {
     "title": "Work",
-    "lede": "One featured project for now. New case studies will appear here as they are ready to be told properly.",
+    "lede": "A featured case study, plus the personal projects and open code I build on GitHub.",
     "viewCase": "View case study",
     "visit": "Visit live site",
     "role": "Role",
     "year": "Year",
-    "stack": "Stack"
+    "stack": "Stack",
+    "projectsEyebrow": "Code",
+    "projectsHeading": "Open work on GitHub",
+    "projectsLede": "Personal projects and experiments — quant systems, security tooling, AI agents and the code behind this site.",
+    "viewOnGithub": "View on GitHub",
+    "wip": "Work in progress"
   },
   "directa": {
     "eyebrow": "Case study",
@@ -70,6 +73,7 @@
     "design": "Design decisions",
     "features": "Features delivered",
     "outcome": "Outcome",
+    "gallery": "Gallery",
     "visit": "Visit directa.mx"
   },
   "services": {
@@ -86,6 +90,7 @@
     "email": "Email",
     "whatsapp": "WhatsApp",
     "linkedin": "LinkedIn",
+    "github": "GitHub",
     "calendar": "Book a call",
     "cv": "Download CV",
     "copy": "Copy",
@@ -94,22 +99,14 @@
   "common": {
     "pending": "pending",
     "pendingTooltip": "Placeholder — verified value not yet supplied",
-    "theme": "Theme",
     "reduceMotion": "Reduce motion",
     "enableMotion": "Enable motion",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "themeSystem": "System",
-    "language": "Language",
-    "scrollHint": "Scroll",
-    "backHome": "Back to home"
+    "language": "Language"
   },
   "footer": {
     "tagline": "Independent practice. Available for selected work.",
     "rights": "All rights reserved.",
-    "builtWith": "Built by Santiago Rivera.",
-    "colophonHeading": "Colophon",
-    "colophonBody": "Type set in a contemporary serif and grotesque sans. Built with Next.js, Three.js and GSAP."
+    "builtWith": "Built by Santiago Rivera."
   },
   "notFound": {
     "title": "Not found",

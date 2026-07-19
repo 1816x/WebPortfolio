@@ -12,13 +12,20 @@ const ROW =
   'group flex items-center justify-between gap-4 border-b-2 border-white/25 py-3 font-mono text-[14px] no-underline transition-colors duration-200 hover:text-brand-yellow';
 const ARROW = 'transition-transform duration-200 group-hover:translate-x-1';
 
-/** `compact` is accepted for backward compatibility with the contact route; the royal panel renders identically. */
-export function ContactPanel(_props: { compact?: boolean } = {}) {
+/**
+ * `compact` is accepted for backward compatibility with the contact route.
+ * `asPageHeading` renders the panel's main heading as an <h1> — pass it when
+ * the panel is the page root (the /contact route) so the page has a top-level
+ * heading; on the home page it stays an <h2> under the Hero's <h1>.
+ */
+export function ContactPanel({ asPageHeading = false }: { compact?: boolean; asPageHeading?: boolean } = {}) {
   const t = useTranslations('home');
   const tc = useTranslations('contact');
+  const Heading = asPageHeading ? 'h1' : 'h2';
 
   const email = site.contact.email.value;
   const linkedin = site.contact.linkedin.value;
+  const github = unwrap(site.social.github);
   const whatsapp = unwrap(site.contact.whatsapp);
   const calendar = unwrap(site.contact.calendar);
 
@@ -38,10 +45,10 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
 
           <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <div>
-              <h2 className="text-[clamp(2.2rem,5vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+              <Heading className="text-[clamp(2.2rem,5vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
                 {leadWords}
                 <Marker color="yellow">{lastWord}</Marker>
-              </h2>
+              </Heading>
               <p className="mt-6 max-w-[52ch] text-[17px] leading-relaxed text-white/80">{t('contactLead')}</p>
             </div>
 
@@ -63,6 +70,15 @@ export function ContactPanel(_props: { compact?: boolean } = {}) {
                     /santiagoxriv →
                   </span>
                 </a>
+
+                {github && !isPending(site.social.github) ? (
+                  <a href={github} target="_blank" rel="noreferrer" className={ROW}>
+                    <span className="uppercase tracking-[0.12em]">{tc('github')}</span>
+                    <span aria-hidden className={ARROW}>
+                      /1816x →
+                    </span>
+                  </a>
+                ) : null}
 
                 <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" className={ROW}>
                   <span className="uppercase tracking-[0.12em]">{tc('whatsapp')}</span>

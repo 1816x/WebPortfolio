@@ -43,9 +43,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.directa.mx' },
     ],
   },
-  experimental: {
-    optimizePackageImports: ['framer-motion'],
-  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

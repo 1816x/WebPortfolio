@@ -19,10 +19,10 @@ export function WorkPreview() {
     <section className="border-t-[3px] border-ink">
       <div className="container-x py-16 md:py-24">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4 md:mb-10">
-          <div className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
+          <h2 className="brut-sm inline-flex items-center gap-2 bg-surface px-3 py-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em]">
             <span className="dot" />
             03 — {t('workHeading')}
-          </div>
+          </h2>
           <Link
             href="/work"
             className="group inline-flex items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.08em] text-ink underline-offset-4 hover:underline"

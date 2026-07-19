@@ -52,6 +52,13 @@ export function Footer() {
                 LinkedIn ↗
               </a>
             </li>
+            {!isPending(site.social.github) && unwrap(site.social.github) ? (
+              <li>
+                <a href={unwrap(site.social.github)} target="_blank" rel="noreferrer" className="transition-colors hover:text-brand-yellow">
+                  GitHub ↗
+                </a>
+              </li>
+            ) : null}
             <li>
               <a href={`https://wa.me/${unwrap(site.contact.whatsapp)}`} target="_blank" rel="noreferrer" className="transition-colors hover:text-brand-yellow">
                 WhatsApp {isPending(site.contact.whatsapp) ? <PendingBadge /> : null}

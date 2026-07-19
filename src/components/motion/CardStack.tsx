@@ -116,7 +116,7 @@ export function CardStack() {
         </div>
         <div className={`${card} border-[3px] border-ink bg-brand-coral px-4 py-4 text-on-accent`}>
           <div className="text-3xl font-bold leading-none">MX</div>
-          <div className="mt-1.5 font-mono text-[10px] tracking-[0.1em] text-on-accent/75">{t('heroBaseLabel').toUpperCase()}</div>
+          <div className="mt-1.5 font-mono text-[10px] tracking-[0.1em] text-on-accent">{t('heroBaseLabel').toUpperCase()}</div>
         </div>
       </div>
 

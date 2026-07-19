@@ -18,12 +18,15 @@ services studio).
 ## Stack — locked, do not swap without asking
 
 - Next.js 15 (App Router) + TypeScript
-- Tailwind v3 (token-driven, see `globals.css`)
-- next-intl (i18n) · next-themes (light/dark)
+- Tailwind v3 (token-driven, see `globals.css`) — light-only neo-brutalist
+- next-intl (i18n)
 - GSAP + ScrollTrigger (scroll timelines) · Lenis (smooth scroll)
-- react-three-fiber + drei + three (one signature 3D visual on hero)
-- Framer Motion (component-level micro-interactions only)
 - Deploy: Vercel
+
+> The site was redesigned from an editorial light/dark theme (Instrument Serif,
+> next-themes, a react-three-fiber hero) to a light-only neo-brutalist look with
+> a DOM `CardStack` hero. **next-themes, three / react-three-fiber / drei and
+> Framer Motion were removed — do not re-add them.**
 
 ## Routes (6 × 2 locales = 12 static pages)
 
@@ -44,7 +47,7 @@ and global `not-found.tsx`.
 **Almost every edit goes through two files**:
 
 - `src/content/site.ts` — person, contact, services, capabilities, work
-  list, experience, education, visual + analytics flags.
+  list, projects (public GitHub repos), experience, education, analytics flags.
 - `src/content/directa.ts` — Directa case-study copy.
 
 Both use a `{ value, pending, note }` wrapper for any field whose verified
@@ -59,13 +62,14 @@ Do **not** scatter content across components. Always go through these files.
 | Item                         | Where to put it                                |
 | ---------------------------- | ---------------------------------------------- |
 | Portrait                     | `public/portrait/santiago.jpg` (4:5, ≥1600px)  |
-| CV PDF                       | `public/cv/santiago-rivera-cv.pdf`             |
-| WhatsApp number              | `site.ts → contact.whatsapp`                   |
-| Calendar URL                 | `site.ts → contact.calendar`                   |
 | Experience array             | `site.ts → experience`                         |
 | Education array              | `site.ts → education`                          |
+| Role / positioning line      | `site.ts → person.role`                        |
 | Directa case-study copy      | `directa.ts → context/problem/strategy/…`      |
-| Directa screenshots          | `public/work/directa/{cover,01,02,03}.jpg`     |
+| Directa screenshots + year   | `public/work/directa/{cover,01,02,03}.jpg`     |
+
+WhatsApp, calendar and the CV PDF are finalized (verified in `site.ts`). The
+public GitHub projects now render on the Work page (`site.ts → projects`).
 
 The CV PDF is being redesigned in a parallel Claude Code session — do not
 overwrite it without checking with Santiago first.
@@ -104,18 +108,17 @@ every commit.
 - **Routing**: localized pathnames are configured in `src/i18n/routing.ts`.
   When adding a new route, register it there too or `next-intl`'s
   type-safe `<Link>` won't accept it.
-- **3D visual**: `SignatureField` is dynamically imported via
-  `SignatureCanvas`, which gates on viewport width > 720px **and**
-  `prefers-reduced-motion: no-preference`. Don't import `SignatureField`
-  directly anywhere.
+- **Hero visual**: the hero centerpiece is `CardStack`
+  (`components/motion/CardStack.tsx`), a DOM card stack — the old
+  react-three-fiber field was removed. There is no 3D scene; don't add one.
 - **Reveals**: use the `<Reveal>` wrapper (`src/components/ui/Reveal.tsx`).
   It already handles reduced-motion. Don't sprinkle raw GSAP from inside
   components.
 - **Lenis**: mounted once in `SmoothScrollProvider`. Do not instantiate a
   second Lenis anywhere.
-- **Theming**: tokens in `globals.css` (`:root` + `.dark`); Tailwind reads
-  them via `tailwind.config.ts → theme.extend.colors`. Add new tokens in
-  both blocks or dark mode will look broken.
+- **Theming**: light-only. Tokens in `globals.css` (`:root`); Tailwind reads
+  them via `tailwind.config.ts → theme.extend.colors`. There is no `.dark`
+  block and no theme toggle — a `CalmToggle` controls reduced motion instead.
 - **Buttons**: `<Button>` and `<ButtonLink>` from `components/ui/Button.tsx`
   — three variants (`primary`, `ghost`, `underline`). Don't roll your own.
 - **Analytics**: read from env vars at runtime. Setting either

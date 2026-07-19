@@ -49,7 +49,7 @@ export const site = {
   /** Social handles for footer / metadata. */
   social: {
     linkedin: ok('https://www.linkedin.com/in/santiagoxriv/'),
-    github: todo('', 'Optional — leave empty to hide'),
+    github: ok('https://github.com/1816x'),
     x: todo('', 'Optional — leave empty to hide'),
   },
 
@@ -177,6 +177,79 @@ export const site = {
   ],
 
   /**
+   * Public GitHub projects — personal work and experiments, shown on the Work
+   * page as external links (no case-study page). Copy is derived from each
+   * repo's own description, so it is verified, not pending. Add or remove
+   * entries here; the Work page grid adapts automatically. Only list PUBLIC
+   * repositories — private ones must not be surfaced.
+   *
+   * `accent` picks the language-swatch / highlight colour from the palette
+   * ('blue' | 'coral' | 'green' | 'yellow'). `wip` flags an early-phase repo.
+   */
+  projects: [
+    {
+      slug: 'vuln-triage',
+      name: 'Vulnerability Triage Agent',
+      repo: '1816x/Vulnerability-Triage-Agent',
+      url: 'https://github.com/1816x/Vulnerability-Triage-Agent',
+      year: '2026',
+      language: 'Python · Rust',
+      accent: 'coral',
+      wip: false,
+      summary: {
+        en: 'Reachability-aware CVE prioritizer: it works out which vulnerabilities are actually reachable from your code, and drafts the GitHub issue for the ones that matter.',
+        es: 'Priorizador de CVEs consciente de la accesibilidad: determina qué vulnerabilidades son realmente alcanzables desde tu código y redacta el issue de GitHub para las que importan.',
+      },
+      tags: ['Python', 'Security', 'Static analysis', 'LLM agent', 'Tree-sitter'],
+    },
+    {
+      slug: 'edge-predict',
+      name: 'Edge Predict Model',
+      repo: '1816x/Edge-Predict-Model',
+      url: 'https://github.com/1816x/Edge-Predict-Model',
+      year: '2026',
+      language: 'Python',
+      accent: 'green',
+      wip: false,
+      summary: {
+        en: 'Quantitative sports-betting decision support: calibrated probabilities against no-vig market odds, expected-value detection, fractional-Kelly sizing and fully auditable picks.',
+        es: 'Soporte de decisión cuantitativo para apuestas deportivas: probabilidades calibradas frente a cuotas sin vig, detección de valor esperado, sizing por Kelly fraccional y selecciones totalmente auditables.',
+      },
+      tags: ['Python', 'Calibration', 'Kelly criterion', 'Expected value', 'PostgreSQL'],
+    },
+    {
+      slug: 'microstructure',
+      name: 'Trading Microstructure Engine',
+      repo: '1816x/Trading-Microstructure-Engine',
+      url: 'https://github.com/1816x/Trading-Microstructure-Engine',
+      year: '2026',
+      language: 'Rust · Python',
+      accent: 'blue',
+      wip: true,
+      summary: {
+        en: 'Tick-by-tick futures microstructure engine in Rust — order-flow imbalance computed over real tick data, exposed through a Python API layer.',
+        es: 'Motor de microestructura de futuros tick a tick en Rust — desequilibrio de flujo de órdenes calculado sobre datos reales, expuesto mediante una capa de API en Python.',
+      },
+      tags: ['Rust', 'Python', 'Market microstructure', 'Order flow', 'FastAPI'],
+    },
+    {
+      slug: 'web-portfolio',
+      name: 'Web Portfolio',
+      repo: '1816x/WebPortfolio',
+      url: 'https://github.com/1816x/WebPortfolio',
+      year: '2026',
+      language: 'TypeScript',
+      accent: 'yellow',
+      wip: false,
+      summary: {
+        en: 'This site. A bilingual Next.js 15 portfolio with an editorial neo-brutalist design system, a custom GSAP motion layer and fully localized routing.',
+        es: 'Este sitio. Un portafolio bilingüe en Next.js 15 con un sistema de diseño editorial neo-brutalista, una capa de motion propia con GSAP y ruteo totalmente localizado.',
+      },
+      tags: ['TypeScript', 'Next.js', 'next-intl', 'GSAP', 'Tailwind'],
+    },
+  ],
+
+  /**
    * Experience — populate from the verified CV.
    * Until then, the Experience section renders a clear "pending" state.
    */
@@ -196,16 +269,6 @@ export const site = {
       period: string;
     }>
   >([], 'Populate from CV when finalized'),
-
-  /**
-   * Visual signature configuration for the WebGPU hero field.
-   * Off-switch in case of GPU/perf issues on a particular device.
-   */
-  visual: {
-    enableSignatureField: true,
-    /** Whether to attempt WebGPURenderer before falling back to WebGL2. */
-    preferWebGPU: true,
-  },
 
   /** Analytics hooks read from env vars; null if unset. */
   analytics: {

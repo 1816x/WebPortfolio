@@ -79,10 +79,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       <section className="border-t-[3px] border-ink">
         <div className="container-x py-16 md:py-20">
-          <div className={CHIP}>
+          <h2 className={CHIP}>
             <span className="dot" />
             {t('directaHeading')}
-          </div>
+          </h2>
           <p className="mt-6 max-w-[28ch] text-2xl font-bold leading-[1.15] tracking-[-0.02em] md:text-4xl">
             {t('directaBody')}{' '}
             <a href="https://directa.mx" target="_blank" rel="noreferrer" className="text-accent underline-offset-4 hover:underline">
@@ -94,10 +94,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       <section className="border-t-[3px] border-ink">
         <div className="container-x py-16 md:py-20">
-          <div className={CHIP}>
+          <h2 className={CHIP}>
             <span className="dot" />
             {t('experienceHeading')}
-          </div>
+          </h2>
           {expPending || experience.length === 0 ? (
             <div className="brut mt-6 flex max-w-2xl items-center gap-3 bg-surface p-5 text-ink-muted">
               <PendingBadge />
@@ -109,7 +109,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
                   <span className="label text-ink-subtle">{exp.period}</span>
                   <div>
-                    <p className="text-xl font-bold tracking-[-0.01em]">{exp.role[l]}</p>
+                    <h3 className="text-xl font-bold tracking-[-0.01em]">{exp.role[l]}</h3>
                     <p className="label mt-1 text-ink-muted">{exp.org}</p>
                     <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{exp.summary[l]}</p>
                   </div>
@@ -122,10 +122,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       <section className="border-t-[3px] border-ink">
         <div className="container-x py-16 md:py-20">
-          <div className={CHIP}>
+          <h2 className={CHIP}>
             <span className="dot" />
             {t('educationHeading')}
-          </div>
+          </h2>
           {eduPending || education.length === 0 ? (
             <div className="brut mt-6 flex max-w-2xl items-center gap-3 bg-surface p-5 text-ink-muted">
               <PendingBadge />
@@ -137,7 +137,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
                   <span className="label text-ink-subtle">{ed.period}</span>
                   <div>
-                    <p className="text-lg font-bold">{ed.degree[l]}</p>
+                    <h3 className="text-lg font-bold">{ed.degree[l]}</h3>
                     <p className="label mt-1 text-ink-muted">{ed.org}</p>
                   </div>
                 </li>

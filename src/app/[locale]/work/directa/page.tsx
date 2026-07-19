@@ -8,9 +8,10 @@ import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'directa' });
   return buildMetadata({
     locale: locale as 'en' | 'es',
-    title: `Directa — Case study — Santiago Rivera`,
+    title: `Directa — ${t('eyebrow')} — Santiago Rivera`,
     description: directa.context.value[locale as 'en' | 'es'],
     path: '/work/directa',
   });
@@ -31,11 +32,11 @@ function Block({
   return (
     <section className="border-t-[3px] border-ink">
       <Reveal className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-        <div className={CHIP}>
+        <h2 className={CHIP}>
           <span className="dot" />
           {label}
           {data.pending ? <PendingBadge /> : null}
-        </div>
+        </h2>
         <p className="max-w-[30ch] text-2xl font-bold leading-[1.15] tracking-[-0.02em] md:text-3xl">{data.value[l]}</p>
       </Reveal>
     </section>
@@ -110,10 +111,10 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
       {/* Features */}
       <section className="border-t-[3px] border-ink">
         <div className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-          <div className={CHIP}>
+          <h2 className={CHIP}>
             <span className="dot" />
             {t('features')}
-          </div>
+          </h2>
           <ul className="grid gap-4 sm:grid-cols-2">
             {directa.features.map((f, i) => (
               <li key={i} className="brut flex items-start gap-3 bg-surface p-4">
@@ -131,10 +132,10 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
       {/* Gallery */}
       <section className="border-t-[3px] border-ink">
         <div className="container-x grid gap-6 py-12 md:grid-cols-[220px_1fr] md:gap-12 md:py-16">
-          <div className={CHIP}>
+          <h2 className={CHIP}>
             <span className="dot" />
-            Gallery
-          </div>
+            {t('gallery')}
+          </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {directa.media.gallery.map((g, i) => (
               <div key={i} className="brut aspect-[4/3] overflow-hidden bg-canvas-sunken">

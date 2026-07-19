@@ -1,8 +1,7 @@
 {
   "meta": {
     "title": "Santiago Rivera — Software, web, automatización e IA",
-    "description": "Santiago Rivera construye productos web, automatización y sistemas de IA. Fundador de Directa.",
-    "ogAlt": "Santiago Rivera — Portafolio"
+    "description": "Santiago Rivera construye productos web, automatización y sistemas de IA. Fundador de Directa."
   },
   "nav": {
     "home": "Inicio",
@@ -15,7 +14,6 @@
     "skipToContent": "Saltar al contenido"
   },
   "home": {
-    "heroEyebrow": "Independiente — desde México",
     "heroLineA": "Software,",
     "heroLineB": "web, automatización",
     "heroLineC": "y sistemas de IA.",
@@ -53,12 +51,17 @@
   },
   "work": {
     "title": "Trabajo",
-    "lede": "Un proyecto destacado por ahora. Los próximos casos aparecerán aquí cuando estén listos para contarse bien.",
+    "lede": "Un caso destacado, más los proyectos personales y el código abierto que construyo en GitHub.",
     "viewCase": "Ver caso",
     "visit": "Visitar el sitio",
     "role": "Rol",
     "year": "Año",
-    "stack": "Stack"
+    "stack": "Stack",
+    "projectsEyebrow": "Código",
+    "projectsHeading": "Trabajo abierto en GitHub",
+    "projectsLede": "Proyectos y experimentos personales — sistemas cuantitativos, herramientas de seguridad, agentes de IA y el código detrás de este sitio.",
+    "viewOnGithub": "Ver en GitHub",
+    "wip": "En progreso"
   },
   "directa": {
     "eyebrow": "Caso de estudio",
@@ -70,6 +73,7 @@
     "design": "Decisiones de diseño",
     "features": "Funcionalidades entregadas",
     "outcome": "Resultado",
+    "gallery": "Galería",
     "visit": "Visitar directa.mx"
   },
   "services": {
@@ -86,6 +90,7 @@
     "email": "Email",
     "whatsapp": "WhatsApp",
     "linkedin": "LinkedIn",
+    "github": "GitHub",
     "calendar": "Reservar llamada",
     "cv": "Descargar CV",
     "copy": "Copiar",
@@ -94,22 +99,14 @@
   "common": {
     "pending": "pendiente",
     "pendingTooltip": "Marcador — falta el valor verificado",
-    "theme": "Tema",
     "reduceMotion": "Reducir movimiento",
     "enableMotion": "Activar movimiento",
-    "themeLight": "Claro",
-    "themeDark": "Oscuro",
-    "themeSystem": "Sistema",
-    "language": "Idioma",
-    "scrollHint": "Desliza",
-    "backHome": "Volver al inicio"
+    "language": "Idioma"
   },
   "footer": {
     "tagline": "Práctica independiente. Disponible para trabajos seleccionados.",
     "rights": "Todos los derechos reservados.",
-    "builtWith": "Hecho por Santiago Rivera.",
-    "colophonHeading": "Colofón",
-    "colophonBody": "Tipografía con una serif contemporánea y una grotesca. Construido con Next.js, Three.js y GSAP."
+    "builtWith": "Hecho por Santiago Rivera."
   },
   "notFound": {
     "title": "No encontrado",
