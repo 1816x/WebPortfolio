@@ -27,7 +27,7 @@ export const site = {
     },
     location: ok({ en: 'San Pedro Garza García, MX', es: 'San Pedro Garza García, MX' }),
     /** Path to the portrait. Replace with the real headshot. */
-    portrait: todo('/portrait/santiago.jpg', 'Drop the headshot in /public/portrait/'),
+    portrait: ok('/portrait/santiago.png'),
     portraitAlt: {
       en: 'Portrait of Santiago Rivera',
       es: 'Retrato de Santiago Rivera',
