@@ -138,10 +138,10 @@ export default async function DirectaCase({ params }: { params: Promise<{ locale
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {directa.media.gallery.map((g, i) => (
-              <div key={i} className="brut aspect-[4/3] overflow-hidden bg-canvas-sunken">
+              <div key={i} className="brut aspect-[16/9] overflow-hidden bg-canvas-sunken">
                 {g.pending ? (
                   <div className="flex h-full flex-col items-center justify-center gap-2">
-                    <span className="label text-ink-subtle">{String(i + 1).padStart(2, '0')} · 4:3</span>
+                    <span className="label text-ink-subtle">{String(i + 1).padStart(2, '0')} · 16:9</span>
                     <PendingBadge />
                   </div>
                 ) : (
