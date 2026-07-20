@@ -59,7 +59,12 @@ export function personJsonLd(locale: 'en' | 'es') {
     '@type': 'Person',
     name: site.person.name,
     url: base,
-    sameAs: [site.social.linkedin.value, site.social.github.value, site.social.x.value].filter(Boolean),
+    sameAs: [
+      site.social.linkedin.value,
+      site.social.github.value,
+      site.social.x.value,
+      site.social.credly.value,
+    ].filter(Boolean),
     // Only emit a verified job title — JSON-LD has no "pending" badge, so an
     // unconfirmed role would ship as a hard claim.
     ...(isPending(role) ? {} : { jobTitle: unwrap(role) }),

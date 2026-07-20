@@ -15,7 +15,7 @@ export const directa = {
   slug: 'directa',
   name: 'Directa',
   url: 'https://directa.mx',
-  year: todo<LocaleStr>({ en: '2024 — present', es: '2024 — presente' }),
+  year: { value: { en: '2025 — present', es: '2025 — presente' }, pending: false },
   role: todo<LocaleStr>({
     en: 'Founder, product designer and lead developer',
     es: 'Fundador, diseñador de producto y desarrollador principal',
