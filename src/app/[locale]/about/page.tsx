@@ -27,6 +27,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   const experience = unwrap(site.experience);
   const education = unwrap(site.education);
+  const certifications = unwrap(site.certifications);
+  const credly = unwrap(site.social.credly);
   const expPending = isPending(site.experience);
   const eduPending = isPending(site.education);
   const portrait = unwrap(site.person.portrait);
@@ -107,7 +109,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <ul className="mt-8 grid gap-5">
               {experience.map((exp, i) => (
                 <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
-                  <span className="label text-ink-subtle">{exp.period}</span>
+                  <span className="label text-ink-subtle">{exp.period[l]}</span>
                   <div>
                     <h3 className="text-xl font-bold tracking-[-0.01em]">{exp.role[l]}</h3>
                     <p className="label mt-1 text-ink-muted">{exp.org}</p>
@@ -135,7 +137,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <ul className="mt-8 grid gap-5">
               {education.map((ed, i) => (
                 <li key={i} className="brut grid gap-3 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
-                  <span className="label text-ink-subtle">{ed.period}</span>
+                  <span className="label text-ink-subtle">{ed.period[l]}</span>
                   <div>
                     <h3 className="text-lg font-bold">{ed.degree[l]}</h3>
                     <p className="label mt-1 text-ink-muted">{ed.org}</p>
@@ -144,6 +146,48 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               ))}
             </ul>
           )}
+        </div>
+      </section>
+
+      <section className="border-t-[3px] border-ink">
+        <div className="container-x py-16 md:py-20">
+          <h2 className={CHIP}>
+            <span className="dot" />
+            {t('certificationsHeading')}
+          </h2>
+          <ul className="mt-8 grid gap-5">
+            {certifications.map((group) => (
+              <li key={group.issuer} className="brut grid gap-4 bg-surface p-6 md:grid-cols-[160px_1fr] md:gap-8">
+                <div>
+                  <h3 className="text-lg font-bold">{group.issuer}</h3>
+                  {group.period ? <p className="label mt-1 text-ink-subtle">{group.period}</p> : null}
+                </div>
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <li
+                      key={item.name}
+                      className="inline-flex items-center gap-2 border-2 border-ink bg-canvas px-3 py-1.5 text-[13px] font-medium"
+                    >
+                      <span>{item.name}</span>
+                      {item.year ? <span className="font-mono text-[11px] text-ink-subtle">{item.year}</span> : null}
+                      {item.honors ? (
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-accent">
+                          ★ {t('honors')}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          {credly ? (
+            <div className="mt-8">
+              <ButtonLink href={credly} target="_blank" rel="noreferrer" variant="secondary">
+                {t('viewOnCredly')}
+              </ButtonLink>
+            </div>
+          ) : null}
         </div>
       </section>
     </article>

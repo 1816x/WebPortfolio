@@ -33,12 +33,12 @@
     "heroAvailable": "Available for projects",
     "heroStudioLabel": "Studio",
     "heroServicesLabel": "Services",
-    "heroBaseLabel": "Base · 2024",
+    "heroBaseLabel": "Base · 2025",
     "heroGrabHint": "↑ grab the cards"
   },
   "about": {
     "title": "About",
-    "lede": "Software developer, founder of Directa. I build web products, automation and AI systems for teams that need both design and engineering from the same person.",
+    "lede": "Software developer and founder of Directa. I build web products, automations and AI systems for companies that want to grow with technology that is simple, fast and well designed.",
     "focusHeading": "Current focus",
     "focusBody": "Working on production web infrastructure for Spanish-speaking businesses, and on AI features that actually live inside the products their teams use every day.",
     "approachHeading": "Approach",
@@ -47,6 +47,9 @@
     "directaBody": "Directa is the studio I run. The work shown here is built through it.",
     "experienceHeading": "Experience",
     "educationHeading": "Education",
+    "certificationsHeading": "Certifications",
+    "honors": "Honors",
+    "viewOnCredly": "Verify on Credly ↗",
     "downloadCv": "Download CV"
   },
   "work": {

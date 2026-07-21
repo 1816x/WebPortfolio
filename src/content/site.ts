@@ -22,12 +22,12 @@ export const site = {
     name: 'Santiago Rivera',
     /** Concise, evidence-based positioning. Adjust once CV is finalized. */
     role: {
-      en: todo('Software developer building web products, automation and AI systems'),
-      es: todo('Desarrollador de software construyendo productos web, automatización y sistemas de IA'),
+      en: ok('Full-stack software engineer building web products, automation and AI systems'),
+      es: ok('Ingeniero de software full-stack: productos web, automatización y sistemas de IA'),
     },
     location: ok({ en: 'San Pedro Garza García, MX', es: 'San Pedro Garza García, MX' }),
     /** Path to the portrait. Replace with the real headshot. */
-    portrait: todo('/portrait/santiago.jpg', 'Drop the headshot in /public/portrait/'),
+    portrait: ok('/portrait/santiago.png'),
     portraitAlt: {
       en: 'Portrait of Santiago Rivera',
       es: 'Retrato de Santiago Rivera',
@@ -50,7 +50,9 @@ export const site = {
   social: {
     linkedin: ok('https://www.linkedin.com/in/santiagoxriv/'),
     github: ok('https://github.com/1816x'),
-    x: todo('', 'Optional — leave empty to hide'),
+    x: ok('https://x.com/1816z'),
+    /** Public Credly badge wallet — verifiable certifications. */
+    credly: ok('https://www.credly.com/users/eccoed/badges'),
   },
 
   /**
@@ -166,7 +168,7 @@ export const site = {
       slug: 'directa',
       featured: true,
       name: 'Directa',
-      year: { value: '2024 — present', pending: true },
+      year: { value: '2025 — present', pending: false },
       url: 'https://directa.mx',
       summary: {
         en: 'Founder-led services studio: web, automation and AI for Mexican businesses.',
@@ -253,22 +255,120 @@ export const site = {
    * Experience — populate from the verified CV.
    * Until then, the Experience section renders a clear "pending" state.
    */
-  experience: todo<
+  experience: ok<
     Array<{
       role: { en: string; es: string };
       org: string;
-      period: string;
+      period: { en: string; es: string };
       summary: { en: string; es: string };
     }>
-  >([], 'Populate from CV when finalized'),
+  >([
+    {
+      role: { en: 'Founder & Full-Stack Engineer', es: 'Fundador e ingeniero full-stack' },
+      org: 'Directa',
+      period: { en: '2025 — present', es: '2025 — presente' },
+      summary: {
+        en: 'Founded and run a done-for-you digital agency for small businesses — designing, building and shipping web products, e-commerce and workflow automation on a TypeScript / Next.js stack, and owning the full delivery cycle from scoping to maintenance.',
+        es: 'Fundé y dirijo una agencia digital llave en mano para pequeñas empresas — diseño, construyo y despliego productos web, e-commerce y automatización de flujos sobre un stack de TypeScript / Next.js, y soy dueño del ciclo completo, del alcance al mantenimiento.',
+      },
+    },
+    {
+      role: { en: 'Intern', es: 'Practicante' },
+      org: 'CEMEX',
+      period: { en: '2026 — present', es: '2026 — presente' },
+      summary: {
+        en: 'Support digital and technical workflows at a global building-materials company while completing my engineering degree.',
+        es: 'Apoyo flujos de trabajo digitales y técnicos en una empresa global de materiales de construcción mientras curso mi carrera de ingeniería.',
+      },
+    },
+    {
+      role: { en: 'Systems & Web Manager', es: 'Encargado de sistemas y web' },
+      org: 'Moreno Diesel',
+      period: { en: '2023 — present', es: '2023 — presente' },
+      summary: {
+        en: "Manage the company's online store, website infrastructure and electronic-invoicing systems, implementing backend improvements and system integrations that keep daily operations running.",
+        es: 'Gestiono la tienda en línea, la infraestructura del sitio y los sistemas de facturación electrónica de la empresa, implementando mejoras de backend e integraciones que sostienen la operación diaria.',
+      },
+    },
+    {
+      role: { en: 'Developer', es: 'Desarrollador' },
+      org: 'Arwen — Discord bot',
+      period: { en: '2021 — 2023', es: '2021 — 2023' },
+      summary: {
+        en: 'Designed and maintained a large-scale all-in-one Discord bot for automation, moderation and monetization used by active communities, integrating social, gaming and cryptocurrency APIs.',
+        es: 'Diseñé y mantuve un bot de Discord todo-en-uno a gran escala para automatización, moderación y monetización usado por comunidades activas, integrando APIs sociales, de gaming y de criptomonedas.',
+      },
+    },
+  ]),
 
-  education: todo<
+  education: ok<
     Array<{
       degree: { en: string; es: string };
       org: string;
-      period: string;
+      period: { en: string; es: string };
     }>
-  >([], 'Populate from CV when finalized'),
+  >([
+    {
+      degree: { en: 'B.S. in Software Development Engineering', es: 'Ing. en Desarrollo de Software' },
+      org: 'Universidad Tecmilenio, Campus Las Torres',
+      period: { en: '2023 — 2027 (expected)', es: '2023 — 2027 (en curso)' },
+    },
+    {
+      degree: { en: 'High-school diploma — Bilingual program', es: 'Bachillerato — Programa bilingüe' },
+      org: 'CIDEB — Centro de Investigación y Desarrollo en Educación Bilingüe',
+      period: { en: '2020 — 2022', es: '2020 — 2022' },
+    },
+  ]),
+
+  /**
+   * Certifications & credentials — verified from the CV, grouped by issuer.
+   * `honors` marks a distinction; the public Credly wallet lives in
+   * `social.credly`. Add or remove entries here; the About section adapts.
+   */
+  certifications: ok<
+    Array<{
+      issuer: string;
+      period?: string;
+      items: Array<{ name: string; year?: string; honors?: boolean }>;
+    }>
+  >([
+    {
+      issuer: 'Universidad Tecmilenio',
+      period: '2025 — 2026',
+      items: [
+        { name: 'Full-Stack Development' },
+        { name: 'Cloud Computing' },
+        { name: 'Data Science' },
+        { name: 'Databases' },
+        { name: 'Data Structures', honors: true },
+        { name: 'Object-Oriented Programming' },
+        { name: 'Operating Systems', honors: true },
+        { name: 'Network Management', honors: true },
+        { name: 'Agile Methodologies', honors: true },
+        { name: 'Probability & Statistics for Data Science' },
+        { name: 'Programming Fundamentals', honors: true },
+        { name: 'Upper-Intermediate English', honors: true },
+      ],
+    },
+    {
+      issuer: 'AWS',
+      items: [{ name: 'AWS Academy Graduate — Cloud Foundations', year: '2024' }],
+    },
+    {
+      issuer: 'Cisco',
+      items: [
+        { name: 'Networking Basics', year: '2025' },
+        { name: 'Python Essentials 1', year: '2024' },
+      ],
+    },
+    {
+      issuer: 'IBM',
+      items: [
+        { name: 'Web Development Fundamentals — SkillsBuild', year: '2025' },
+        { name: 'Data Visualization with R', year: '2024' },
+      ],
+    },
+  ]),
 
   /** Analytics hooks read from env vars; null if unset. */
   analytics: {

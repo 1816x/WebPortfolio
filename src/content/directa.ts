@@ -1,70 +1,72 @@
 /**
  * Directa case study content.
  *
- * Only the live URL is treated as verified — everything else is marked as
- * pending until Santiago confirms the source material. Replace the values
- * (and remove `pending: true`) once each block is verified.
+ * Copy is grounded in the live site (directa.mx) and Santiago's verified
+ * background — no invented clients, prices or metrics. Wrap any field whose
+ * content is not yet confirmed with `todo(...)`; confirmed fields use `ok(...)`
+ * and render without a "pending" badge.
  */
 
 export type LocaleStr = { en: string; es: string };
 export type PendingBlock<T = LocaleStr> = { value: T; pending?: boolean };
 
-const todo = <T,>(value: T): PendingBlock<T> => ({ value, pending: true });
+const ok = <T,>(value: T): PendingBlock<T> => ({ value, pending: false });
 
 export const directa = {
   slug: 'directa',
   name: 'Directa',
   url: 'https://directa.mx',
-  year: todo<LocaleStr>({ en: '2024 — present', es: '2024 — presente' }),
-  role: todo<LocaleStr>({
-    en: 'Founder, product designer and lead developer',
-    es: 'Fundador, diseñador de producto y desarrollador principal',
+  year: ok<LocaleStr>({ en: '2025 — present', es: '2025 — presente' }),
+  role: ok<LocaleStr>({
+    en: 'Founder & full-stack engineer',
+    es: 'Fundador e ingeniero full-stack',
   }),
 
-  context: todo<LocaleStr>({
-    en: 'Directa is the services studio Santiago runs. It packages the work he already does — web products, automation, AI integration — under a single brand for Spanish-speaking clients.',
-    es: 'Directa es el estudio de servicios que dirige Santiago. Empaqueta el trabajo que ya hace — productos web, automatización, integración de IA — bajo una misma marca para clientes hispanohablantes.',
+  context: ok<LocaleStr>({
+    en: 'Directa is the digital agency Santiago founded and runs. It packages the work he already does — websites, e-commerce and automation — into a single team a business can hire for its whole digital presence, instead of coordinating a separate designer, developer and agency.',
+    es: 'Directa es la agencia digital que Santiago fundó y dirige. Empaqueta el trabajo que ya hace — sitios web, e-commerce y automatización — en un solo equipo que un negocio puede contratar para toda su presencia digital, en lugar de coordinar por separado a un diseñador, un desarrollador y una agencia.',
   }),
 
-  problem: todo<LocaleStr>({
-    en: 'Small and mid-size operators in Mexico need modern web infrastructure but rarely find one team that can both design and ship it. Agencies design. Freelancers build. Few do both with the same standard.',
-    es: 'Operadores pequeños y medianos en México necesitan infraestructura web moderna, pero rara vez encuentran un solo equipo que diseñe y construya con el mismo estándar.',
+  problem: ok<LocaleStr>({
+    en: 'Small and mid-size businesses in Mexico need modern web infrastructure, but the market splits the work: agencies design, freelancers build, template shops hand over something the owner still has to finish. Few deliver a site that is ready to operate and sell from day one.',
+    es: 'Los negocios pequeños y medianos en México necesitan infraestructura web moderna, pero el mercado parte el trabajo: las agencias diseñan, los freelancers programan y las fábricas de plantillas entregan algo que el dueño todavía tiene que terminar. Pocos entregan un sitio listo para operar y vender desde el primer día.',
   }),
 
-  strategy: todo<LocaleStr>({
-    en: 'Position Directa around outcomes rather than deliverables. Each engagement starts with the business problem, ends with a system the client can operate, and stays small enough to ship fast.',
-    es: 'Posicionar a Directa por resultados, no por entregables. Cada proyecto arranca con el problema del negocio, termina con un sistema que el cliente puede operar y se mantiene compacto para entregar rápido.',
+  strategy: ok<LocaleStr>({
+    en: 'Position Directa as one team for the whole digital presence, sold by outcome rather than deliverable. Every engagement starts from the business goal — more bookings, more orders, more clients — and ends with a system the owner can actually run.',
+    es: 'Posicionar a Directa como un solo equipo para toda la presencia digital, vendido por resultado y no por entregable. Cada proyecto arranca desde la meta del negocio — más reservas, más pedidos, más clientes — y termina con un sistema que el dueño realmente puede operar.',
   }),
 
-  implementation: todo<LocaleStr>({
-    en: 'Built on a modern web stack: Next.js, Tailwind, edge deploys, with custom integrations into CRM, email and AI workflows as projects require.',
-    es: 'Construido sobre un stack web moderno: Next.js, Tailwind, despliegues en el edge, con integraciones a medida con CRM, correo y flujos de IA según lo que cada proyecto requiera.',
+  implementation: ok<LocaleStr>({
+    en: 'Built on a modern, maintainable stack — TypeScript, Next.js, Tailwind and edge deploys — with e-commerce, SEO and workflow automation wired in per project. Santiago owns the full cycle: scoping, design direction, development, deployment and ongoing maintenance.',
+    es: 'Construido sobre un stack moderno y mantenible — TypeScript, Next.js, Tailwind y despliegues en el edge — con e-commerce, SEO y automatización de flujos integrados según cada proyecto. Santiago es dueño del ciclo completo: alcance, dirección de diseño, desarrollo, despliegue y mantenimiento.',
   }),
 
-  design: todo<LocaleStr>({
-    en: 'Direct typography, generous whitespace, restrained motion. The brand visibly avoids the over-decorated agency look common in the local market.',
-    es: 'Tipografía directa, generosos espacios en blanco, motion contenido. La marca evita visiblemente el look sobrecargado de agencia común en el mercado local.',
+  design: ok<LocaleStr>({
+    en: 'A bold, high-contrast brand voice — "built to sell more" — that stays legible and fast. Direct typography, clear hierarchy and restrained motion, deliberately avoiding the over-decorated agency look common in the local market.',
+    es: 'Una voz de marca directa y de alto contraste — "built to sell more" — que se mantiene legible y rápida. Tipografía directa, jerarquía clara y motion contenido, evitando a propósito el look sobrecargado de agencia común en el mercado local.',
   }),
 
   features: [
-    todo<LocaleStr>({ en: 'Service-led marketing site', es: 'Sitio de marketing orientado a servicios' }),
-    todo<LocaleStr>({ en: 'Bilingual content infrastructure', es: 'Infraestructura de contenido bilingüe' }),
-    todo<LocaleStr>({ en: 'Editorial case-study layouts', es: 'Layouts editoriales para casos de estudio' }),
-    todo<LocaleStr>({ en: 'Contact and intake flows', es: 'Flujos de contacto y captación' }),
+    ok<LocaleStr>({ en: 'Websites & e-commerce built to convert', es: 'Sitios web y e-commerce hechos para convertir' }),
+    ok<LocaleStr>({ en: 'Brand, SEO and blog content', es: 'Marca, SEO y contenido de blog' }),
+    ok<LocaleStr>({ en: 'Bilingual (ES / EN) content infrastructure', es: 'Infraestructura de contenido bilingüe (ES / EN)' }),
+    ok<LocaleStr>({ en: 'Client portal + book-a-call intake', es: 'Portal de cliente y captación con reserva de llamada' }),
   ],
 
-  outcome: todo<LocaleStr>({
-    en: 'A live business identity Santiago uses as the front door for new client work. Operational metrics are intentionally not published.',
-    es: 'Una identidad de negocio activa que Santiago usa como puerta de entrada para nuevos proyectos. Las métricas operativas no se publican intencionalmente.',
+  outcome: ok<LocaleStr>({
+    en: 'A live business identity that Santiago runs as the front door for new client work. Operational metrics are not published for now.',
+    es: 'Una identidad de negocio activa que Santiago opera como la puerta de entrada para nuevos proyectos. Las métricas operativas no se publican por ahora.',
   }),
 
-  /** Media — replace these paths once screenshots are dropped in /public/work/directa/ */
+  /** Media — real captures of directa.mx (cover + gallery), in /public/work/directa/. */
   media: {
-    cover: todo('/work/directa/cover.jpg'),
+    cover: ok('/work/directa/cover.png'),
     gallery: [
-      todo('/work/directa/01.jpg'),
-      todo('/work/directa/02.jpg'),
-      todo('/work/directa/03.jpg'),
+      ok('/work/directa/01.png'),
+      ok('/work/directa/02.png'),
+      ok('/work/directa/03.png'),
+      ok('/work/directa/04.png'),
     ],
   },
 } as const;
