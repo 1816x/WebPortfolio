@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Santiago Rivera — Software, web, automatización e IA",
-    "description": "Santiago Rivera construye productos web, automatización y sistemas de IA. Fundador de Directa."
+    "title": "Santiago Rivera — Desarrollador de software",
+    "description": "Santiago Rivera es desarrollador de software y fundador de Directa. Diseña y desarrolla sitios web, herramientas internas y automatizaciones para negocios."
   },
   "nav": {
     "home": "Inicio",
@@ -14,37 +14,38 @@
     "skipToContent": "Saltar al contenido"
   },
   "home": {
-    "heroLineA": "Software,",
-    "heroLineB": "web, automatización",
-    "heroLineC": "y sistemas de IA.",
-    "heroIntro": "Construyo lo que normalmente se reparte entre tres equipos — diseño, web y automatización — bajo una sola práctica.",
-    "ctaWork": "Ver trabajo seleccionado",
+    "heroLineA": "Desarrollador de",
+    "heroLineB": "software y fundador",
+    "heroLineC": "de Directa.",
+    "heroIntro": "Diseño y desarrollo sitios web, herramientas internas y automatizaciones para negocios.",
+    "ctaWork": "Ver mi trabajo",
     "ctaContact": "Hablemos",
     "introHeading": "Sobre mí",
-    "introBody": "Desarrollador de software trabajando entre productos web, automatización e IA. Dirijo Directa, un estudio de servicios para negocios que necesitan claridad de diseño y profundidad de ingeniería sin la sobrecarga de una agencia.",
+    "introBody": "Dirijo Directa y atiendo personalmente la parte técnica. También mantengo proyectos públicos y estoy abierto a conversaciones con equipos, colaboradores y reclutadores.",
     "workHeading": "Trabajo seleccionado",
     "workViewAll": "Ver todo",
     "servicesHeading": "Servicios",
-    "servicesLead": "Cuatro líneas de trabajo, enmarcadas por el problema que resuelven, no por las herramientas que usan.",
+    "servicesLead": "Servicios concretos de diseño, desarrollo y automatización, disponibles a través de Directa.",
     "capabilitiesHeading": "Capacidades",
-    "capabilitiesLead": "Un stack que se usa — no un muro de logos.",
+    "capabilitiesLead": "Herramientas y áreas que forman parte del trabajo documentado en este portafolio.",
     "contactHeading": "Hablemos",
-    "contactLead": "Si tienes un proyecto, un sistema que no se paga solo, o una pregunta que pueda responder en veinte minutos — escribe.",
+    "contactLead": "Para un proyecto comercial, una colaboración o una conversación profesional, elige el canal que te resulte más cómodo.",
     "heroAvailable": "Disponible para proyectos",
     "heroStudioLabel": "Estudio",
     "heroServicesLabel": "Servicios",
     "heroBaseLabel": "Base · 2025",
-    "heroGrabHint": "↑ agarrá las tarjetas"
+    "heroGrabHint": "Tarjetas informativas",
+    "experienceHeading": "Experiencia personal"
   },
   "about": {
     "title": "Sobre mí",
-    "lede": "Desarrollador de software y fundador de Directa. Construyo productos web, automatizaciones y sistemas de IA para empresas que quieren crecer con tecnología simple, rápida y bien diseñada.",
+    "lede": "Desarrollador de software y fundador de Directa. Diseño y desarrollo sitios web, herramientas internas y automatizaciones para negocios.",
     "focusHeading": "Foco actual",
     "focusBody": "Trabajando en infraestructura web de producción para negocios hispanohablantes, y en funcionalidades de IA que viven dentro de los productos que sus equipos usan todos los días.",
     "approachHeading": "Cómo trabajo",
     "approachBody": "Equipos pequeños. Trabajos cortos. Decisiones escritas. Nada que entregue que el cliente no pueda operar después.",
     "directaHeading": "Sobre Directa",
-    "directaBody": "Directa es el estudio que dirijo. El trabajo que se ve aquí pasa por ahí.",
+    "directaBody": "Directa es el estudio que dirijo y la vía comercial para contratar mis servicios. Atiendo personalmente la parte técnica.",
     "experienceHeading": "Experiencia",
     "educationHeading": "Educación",
     "certificationsHeading": "Certificaciones",
@@ -67,15 +68,15 @@
     "wip": "En progreso"
   },
   "directa": {
-    "eyebrow": "Caso de estudio",
+    "eyebrow": "Proyecto propio",
     "context": "Contexto",
     "problem": "Problema",
     "role": "Rol",
     "strategy": "Estrategia",
     "implementation": "Implementación",
     "design": "Decisiones de diseño",
-    "features": "Funcionalidades entregadas",
-    "outcome": "Resultado",
+    "features": "Funciones del sitio",
+    "outcome": "Estado",
     "gallery": "Galería",
     "visit": "Visitar directa.mx"
   },
@@ -107,7 +108,7 @@
     "language": "Idioma"
   },
   "footer": {
-    "tagline": "Práctica independiente. Disponible para trabajos seleccionados.",
+    "tagline": "Desarrollador de software y fundador de Directa.",
     "rights": "Todos los derechos reservados.",
     "builtWith": "Hecho por Santiago Rivera."
   },

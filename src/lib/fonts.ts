@@ -1,30 +1,55 @@
-import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 
-/**
- * Neo-brutalist type system:
- *  - Space Grotesk for everything structural (body + display)
- *  - JetBrains Mono for labels, metadata, tickers, buttons-as-data
- * `--font-display` is the same family at heavier weights so headings stay
- * cohesive with body copy (the brutalist look is weight + scale, not a
- * second typeface).
- */
-export const fontSans = Space_Grotesk({
-  subsets: ['latin'],
+/** Locally bundled typography avoids runtime requests and keeps builds reproducible. */
+export const fontSans = localFont({
+  src: [
+    {
+      path: '../../node_modules/@fontsource/outfit/files/outfit-latin-400-normal.woff2',
+      weight: '400',
+    },
+    {
+      path: '../../node_modules/@fontsource/outfit/files/outfit-latin-500-normal.woff2',
+      weight: '500',
+    },
+    {
+      path: '../../node_modules/@fontsource/outfit/files/outfit-latin-700-normal.woff2',
+      weight: '700',
+    },
+  ],
   variable: '--font-sans',
-  weight: ['400', '500', '700'],
   display: 'swap',
 });
 
-export const fontDisplay = Space_Grotesk({
-  subsets: ['latin'],
+export const fontDisplay = localFont({
+  src: [
+    {
+      path: '../../node_modules/@fontsource/outfit/files/outfit-latin-500-normal.woff2',
+      weight: '500',
+    },
+    {
+      path: '../../node_modules/@fontsource/outfit/files/outfit-latin-700-normal.woff2',
+      weight: '700',
+    },
+  ],
   variable: '--font-display',
-  weight: ['500', '700'],
   display: 'swap',
 });
 
-export const fontMono = JetBrains_Mono({
-  subsets: ['latin'],
+export const fontMono = localFont({
+  src: [
+    {
+      path: '../../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2',
+      weight: '400',
+    },
+    {
+      path: '../../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2',
+      weight: '500',
+    },
+    {
+      path: '../../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2',
+      weight: '700',
+    },
+  ],
   variable: '--font-mono',
-  weight: ['400', '500', '700'],
   display: 'swap',
 });

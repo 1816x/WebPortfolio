@@ -22,8 +22,8 @@ export const site = {
     name: 'Santiago Rivera',
     /** Concise, evidence-based positioning. Adjust once CV is finalized. */
     role: {
-      en: ok('Full-stack software engineer building web products, automation and AI systems'),
-      es: ok('Ingeniero de software full-stack: productos web, automatización y sistemas de IA'),
+      en: ok('Software developer and founder of Directa'),
+      es: ok('Desarrollador de software y fundador de Directa'),
     },
     location: ok({ en: 'San Pedro Garza García, MX', es: 'San Pedro Garza García, MX' }),
     /** Path to the portrait. Replace with the real headshot. */
@@ -90,8 +90,8 @@ export const site = {
         es: 'Flujos internos que conectan CRM, correo, hojas y APIs en un único pipeline observable.',
       },
       outcome: {
-        en: 'Hours of manual work removed every week.',
-        es: 'Horas de trabajo manual eliminadas cada semana.',
+        en: 'A documented workflow with fewer repeated handoffs.',
+        es: 'Un flujo documentado con menos traspasos repetitivos.',
       },
     },
     {
@@ -107,8 +107,8 @@ export const site = {
         es: 'Funcionalidades de IA enfocadas — recuperación, clasificación, redacción, soporte — construidas alrededor del modelo y los datos, no del hype.',
       },
       outcome: {
-        en: 'Workflows that actually use AI in production.',
-        es: 'Flujos que realmente usan IA en producción.',
+        en: 'A focused feature that can be reviewed and maintained.',
+        es: 'Una función enfocada que se puede revisar y mantener.',
       },
     },
     {
@@ -124,8 +124,8 @@ export const site = {
         es: 'Un trabajo corto: auditoría, recomendaciones escritas y un camino claro que tu equipo pueda ejecutar.',
       },
       outcome: {
-        en: 'Clarity, with the receipts to act on it.',
-        es: 'Claridad, con los argumentos para actuar.',
+        en: 'A written technical plan the team can evaluate and execute.',
+        es: 'Un plan técnico escrito que el equipo puede evaluar y ejecutar.',
       },
     },
   ],
@@ -138,7 +138,15 @@ export const site = {
     {
       id: 'product',
       title: { en: 'Product & front end', es: 'Producto y front end' },
-      items: ['TypeScript', 'React', 'Next.js', 'Tailwind', 'Three.js / R3F', 'GSAP', 'Framer Motion'],
+      items: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Tailwind',
+        'Three.js / R3F',
+        'GSAP',
+        'Framer Motion',
+      ],
     },
     {
       id: 'backend',
@@ -171,8 +179,8 @@ export const site = {
       year: { value: '2025 — present', pending: false },
       url: 'https://directa.mx',
       summary: {
-        en: 'Founder-led services studio: web, automation and AI for Mexican businesses.',
-        es: 'Estudio de servicios fundado por Santiago: web, automatización e IA para empresas mexicanas.',
+        en: 'Self-initiated project: the brand and bilingual website for Santiago’s services studio.',
+        es: 'Proyecto propio: la marca y el sitio bilingüe del estudio de servicios de Santiago.',
       },
       tags: ['Founder', 'Web', 'Automation', 'AI'],
     },
@@ -295,8 +303,8 @@ export const site = {
       org: 'Arwen — Discord bot',
       period: { en: '2021 — 2023', es: '2021 — 2023' },
       summary: {
-        en: 'Designed and maintained a large-scale all-in-one Discord bot for automation, moderation and monetization used by active communities, integrating social, gaming and cryptocurrency APIs.',
-        es: 'Diseñé y mantuve un bot de Discord todo-en-uno a gran escala para automatización, moderación y monetización usado por comunidades activas, integrando APIs sociales, de gaming y de criptomonedas.',
+        en: 'Designed and maintained an all-in-one Discord bot for automation, moderation and monetization, integrating social, gaming and cryptocurrency APIs.',
+        es: 'Diseñé y mantuve un bot de Discord todo-en-uno para automatización, moderación y monetización, integrando APIs sociales, de gaming y de criptomonedas.',
       },
     },
   ]),
@@ -309,12 +317,18 @@ export const site = {
     }>
   >([
     {
-      degree: { en: 'B.S. in Software Development Engineering', es: 'Ing. en Desarrollo de Software' },
+      degree: {
+        en: 'B.S. in Software Development Engineering',
+        es: 'Ing. en Desarrollo de Software',
+      },
       org: 'Universidad Tecmilenio, Campus Las Torres',
       period: { en: '2023 — 2027 (expected)', es: '2023 — 2027 (en curso)' },
     },
     {
-      degree: { en: 'High-school diploma — Bilingual program', es: 'Bachillerato — Programa bilingüe' },
+      degree: {
+        en: 'High-school diploma — Bilingual program',
+        es: 'Bachillerato — Programa bilingüe',
+      },
       org: 'CIDEB — Centro de Investigación y Desarrollo en Educación Bilingüe',
       period: { en: '2020 — 2022', es: '2020 — 2022' },
     },
@@ -380,7 +394,12 @@ export const site = {
 } as const;
 
 export function isPending<T>(field: T | Pending<T>): boolean {
-  return typeof field === 'object' && field !== null && 'pending' in field && (field as Pending<T>).pending === true;
+  return (
+    typeof field === 'object' &&
+    field !== null &&
+    'pending' in field &&
+    (field as Pending<T>).pending === true
+  );
 }
 
 export function unwrap<T>(field: T | Pending<T>): T {

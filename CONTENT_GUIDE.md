@@ -18,23 +18,24 @@ There are two kinds of fields:
   2. Flip `pending: true` to `pending: false` (or remove the property).
   3. Optional: delete `note`.
 
-A small "pending" badge renders in the UI for every wrapped field still marked
-`pending: true`, so nothing unverified ever ships silently.
+Pending fields are tracked in source and planning documentation. Public pages
+must omit unverified information rather than use an internal status badge as
+finished content.
 
 ### Sections you can edit
 
-| Block              | What it controls                                   |
-| ------------------ | -------------------------------------------------- |
-| `person`           | Name, role per language, location, portrait path   |
-| `contact`          | Email, WhatsApp, LinkedIn, calendar, CV path       |
-| `social`           | Footer / metadata social links                     |
-| `services`         | The four service blocks (Problem / Deliverable / Outcome) |
-| `capabilities`     | Capability groups and tags                         |
-| `work`             | Featured case studies (each with a dedicated page) |
-| `projects`         | Public GitHub repos shown on the Work page (external links) |
-| `experience`       | Work history (initially `pending`)                 |
-| `education`        | Education (initially `pending`)                    |
-| `analytics`        | Read from env vars                                 |
+| Block          | What it controls                                            |
+| -------------- | ----------------------------------------------------------- |
+| `person`       | Name, role per language, location, portrait path            |
+| `contact`      | Email, WhatsApp, LinkedIn, calendar, CV path                |
+| `social`       | Footer / metadata social links                              |
+| `services`     | The four service blocks (Problem / Deliverable / Outcome)   |
+| `capabilities` | Capability groups and tags                                  |
+| `work`         | Featured case studies (each with a dedicated page)          |
+| `projects`     | Public GitHub repos shown on the Work page (external links) |
+| `experience`   | Work history (initially `pending`)                          |
+| `education`    | Education (initially `pending`)                             |
+| `analytics`    | Read from env vars                                          |
 
 ## 2. `src/content/directa.ts`
 

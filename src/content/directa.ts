@@ -10,7 +10,7 @@
 export type LocaleStr = { en: string; es: string };
 export type PendingBlock<T = LocaleStr> = { value: T; pending?: boolean };
 
-const ok = <T,>(value: T): PendingBlock<T> => ({ value, pending: false });
+const ok = <T>(value: T): PendingBlock<T> => ({ value, pending: false });
 
 export const directa = {
   slug: 'directa',
@@ -18,45 +18,54 @@ export const directa = {
   url: 'https://directa.mx',
   year: ok<LocaleStr>({ en: '2025 — present', es: '2025 — presente' }),
   role: ok<LocaleStr>({
-    en: 'Founder & full-stack engineer',
-    es: 'Fundador e ingeniero full-stack',
+    en: 'Self-initiated project · design direction and development',
+    es: 'Proyecto propio · dirección de diseño y desarrollo',
   }),
 
   context: ok<LocaleStr>({
-    en: 'Directa is the digital agency Santiago founded and runs. It packages the work he already does — websites, e-commerce and automation — into a single team a business can hire for its whole digital presence, instead of coordinating a separate designer, developer and agency.',
-    es: 'Directa es la agencia digital que Santiago fundó y dirige. Empaqueta el trabajo que ya hace — sitios web, e-commerce y automatización — en un solo equipo que un negocio puede contratar para toda su presencia digital, en lugar de coordinar por separado a un diseñador, un desarrollador y una agencia.',
+    en: 'Directa is Santiago’s own studio. This project documents the creation of its commercial presence and website while the studio begins business development.',
+    es: 'Directa es el estudio propio de Santiago. Este proyecto documenta la creación de su presencia comercial y su sitio mientras el estudio comienza su desarrollo comercial.',
   }),
 
   problem: ok<LocaleStr>({
-    en: 'Small and mid-size businesses in Mexico need modern web infrastructure, but the market splits the work: agencies design, freelancers build, template shops hand over something the owner still has to finish. Few deliver a site that is ready to operate and sell from day one.',
-    es: 'Los negocios pequeños y medianos en México necesitan infraestructura web moderna, pero el mercado parte el trabajo: las agencias diseñan, los freelancers programan y las fábricas de plantillas entregan algo que el dueño todavía tiene que terminar. Pocos entregan un sitio listo para operar y vender desde el primer día.',
+    en: 'The new studio needed a clear identity and a public place to explain its services, answer basic questions and open a conversation with prospective clients.',
+    es: 'El nuevo estudio necesitaba una identidad clara y un espacio público para explicar sus servicios, responder preguntas básicas y abrir conversaciones con posibles clientes.',
   }),
 
   strategy: ok<LocaleStr>({
-    en: 'Position Directa as one team for the whole digital presence, sold by outcome rather than deliverable. Every engagement starts from the business goal — more bookings, more orders, more clients — and ends with a system the owner can actually run.',
-    es: 'Posicionar a Directa como un solo equipo para toda la presencia digital, vendido por resultado y no por entregable. Cada proyecto arranca desde la meta del negocio — más reservas, más pedidos, más clientes — y termina con un sistema que el dueño realmente puede operar.',
+    en: 'Organize the offer around concrete services and a direct contact path. Santiago leads the studio and personally handles its technical work.',
+    es: 'Organizar la oferta alrededor de servicios concretos y una vía directa de contacto. Santiago dirige el estudio y atiende personalmente su parte técnica.',
   }),
 
   implementation: ok<LocaleStr>({
-    en: 'Built on a modern, maintainable stack — TypeScript, Next.js, Tailwind and edge deploys — with e-commerce, SEO and workflow automation wired in per project. Santiago owns the full cycle: scoping, design direction, development, deployment and ongoing maintenance.',
-    es: 'Construido sobre un stack moderno y mantenible — TypeScript, Next.js, Tailwind y despliegues en el edge — con e-commerce, SEO y automatización de flujos integrados según cada proyecto. Santiago es dueño del ciclo completo: alcance, dirección de diseño, desarrollo, despliegue y mantenimiento.',
+    en: 'Santiago directed the design, implemented the site and structured its content. The published site includes Spanish and English pages, localized navigation, service pages and a route to schedule a conversation.',
+    es: 'Santiago dirigió el diseño, implementó el sitio y estructuró su contenido. El sitio publicado incluye páginas en español e inglés, navegación localizada, páginas de servicios y una vía para agendar una conversación.',
   }),
 
   design: ok<LocaleStr>({
-    en: 'A bold, high-contrast brand voice — "built to sell more" — that stays legible and fast. Direct typography, clear hierarchy and restrained motion, deliberately avoiding the over-decorated agency look common in the local market.',
-    es: 'Una voz de marca directa y de alto contraste — "built to sell more" — que se mantiene legible y rápida. Tipografía directa, jerarquía clara y motion contenido, evitando a propósito el look sobrecargado de agencia común en el mercado local.',
+    en: 'The visual system uses direct typography, clear hierarchy and restrained motion to make the offer and next step easy to scan.',
+    es: 'El sistema visual usa tipografía directa, jerarquía clara y movimiento contenido para facilitar la lectura de la oferta y el siguiente paso.',
   }),
 
   features: [
-    ok<LocaleStr>({ en: 'Websites & e-commerce built to convert', es: 'Sitios web y e-commerce hechos para convertir' }),
-    ok<LocaleStr>({ en: 'Brand, SEO and blog content', es: 'Marca, SEO y contenido de blog' }),
-    ok<LocaleStr>({ en: 'Bilingual (ES / EN) content infrastructure', es: 'Infraestructura de contenido bilingüe (ES / EN)' }),
-    ok<LocaleStr>({ en: 'Client portal + book-a-call intake', es: 'Portal de cliente y captación con reserva de llamada' }),
+    ok<LocaleStr>({
+      en: 'Localized Spanish and English pages',
+      es: 'Páginas localizadas en español e inglés',
+    }),
+    ok<LocaleStr>({
+      en: 'Navigation and dedicated service pages',
+      es: 'Navegación y páginas dedicadas de servicios',
+    }),
+    ok<LocaleStr>({
+      en: 'Structured studio and service content',
+      es: 'Contenido estructurado del estudio y sus servicios',
+    }),
+    ok<LocaleStr>({ en: 'A direct scheduling path', es: 'Una vía directa para agendar' }),
   ],
 
   outcome: ok<LocaleStr>({
-    en: 'A live business identity that Santiago runs as the front door for new client work. Operational metrics are not published for now.',
-    es: 'Una identidad de negocio activa que Santiago opera como la puerta de entrada para nuevos proyectos. Las métricas operativas no se publican por ahora.',
+    en: 'The site is published and the studio is in the business-development stage. This case documents the brand and website, not client results.',
+    es: 'El sitio está publicado y el estudio se encuentra en etapa de desarrollo comercial. Este caso documenta la marca y el sitio, no resultados de clientes.',
   }),
 
   /** Media — real captures of directa.mx (cover + gallery), in /public/work/directa/. */

@@ -2,7 +2,7 @@
 
 Personal portfolio for **Santiago Rivera** — software developer, founder of
 [Directa](https://directa.mx). Bilingual (Spanish / English), light-only
-neo-brutalist editorial layout with an interactive DOM hero card-stack.
+clean editorial layout with an existing portrait-led hero.
 
 > Built with Next.js 15 (App Router) · TypeScript · Tailwind · next-intl ·
 > GSAP + ScrollTrigger · Lenis.
@@ -22,15 +22,15 @@ locale (`/es`).
 
 ## Scripts
 
-| Command           | What it does                                  |
-| ----------------- | --------------------------------------------- |
-| `pnpm dev`        | Local dev server                              |
-| `pnpm build`      | Production build                              |
-| `pnpm start`      | Serve the production build                    |
-| `pnpm lint`       | Lint with Next/ESLint                         |
-| `pnpm typecheck`  | TypeScript no-emit                            |
-| `pnpm format`     | Prettier format the repo                      |
-| `pnpm test:e2e`   | Playwright smoke tests (boots production)     |
+| Command          | What it does                              |
+| ---------------- | ----------------------------------------- |
+| `pnpm dev`       | Local dev server                          |
+| `pnpm build`     | Production build                          |
+| `pnpm start`     | Serve the production build                |
+| `pnpm lint`      | Lint with Next/ESLint                     |
+| `pnpm typecheck` | TypeScript no-emit                        |
+| `pnpm format`    | Prettier format the repo                  |
+| `pnpm test:e2e`  | Playwright smoke tests (boots production) |
 
 ## Project structure
 
