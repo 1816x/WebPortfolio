@@ -28,7 +28,10 @@ export function WorkPreview() {
             className="group inline-flex items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.08em] text-ink underline-offset-4 hover:underline"
           >
             {t('workViewAll')}
-            <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
+            <span
+              aria-hidden
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
               →
             </span>
           </Link>
@@ -70,13 +73,38 @@ export function WorkPreview() {
                   className="press group inline-flex items-center gap-2 border-[3px] border-white bg-brand-yellow px-4 py-3 text-[14px] font-bold leading-none text-on-accent no-underline"
                 >
                   {tWork('viewCase')}
-                  <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
                     →
                   </span>
                 </Link>
               </Magnetic>
             </div>
           </article>
+        </Reveal>
+
+        <Reveal stagger={0.08} className="mt-6 grid gap-5 md:grid-cols-2">
+          {site.projects.slice(0, 2).map((item) => (
+            <a
+              key={item.slug}
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-2xl border border-ink/20 bg-surface p-6 no-underline transition-colors hover:border-accent md:p-7"
+            >
+              <div className="flex items-center justify-between gap-3 font-mono text-xs uppercase tracking-wider text-ink-muted">
+                <span>{item.language}</span>
+                <span>{item.wip ? tWork('wip') : item.year}</span>
+              </div>
+              <h3 className="mt-5 text-2xl font-semibold">{item.name}</h3>
+              <p className="mt-3 leading-relaxed text-ink-muted">{item.summary[locale]}</p>
+              <span className="mt-5 inline-flex font-mono text-xs font-bold uppercase tracking-wider text-accent">
+                {tWork('viewOnGithub')} ↗
+              </span>
+            </a>
+          ))}
         </Reveal>
       </div>
     </section>

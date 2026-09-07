@@ -5,11 +5,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { gsap, prefersReduced } from '@/lib/motion';
 import { Link } from '@/i18n/routing';
 import { Magnetic } from '@/components/motion/Magnetic';
-import { CardStack } from '@/components/motion/CardStack';
+import Image from 'next/image';
 import { site } from '@/content/site';
 
-const TAG_COLORS = ['bg-brand-yellow text-on-accent', 'bg-brand-blue text-white', 'bg-brand-coral text-on-accent'];
-const CTA = 'press group inline-flex items-center justify-center gap-2 border-[3px] border-ink px-5 py-3.5 text-[14px] font-semibold leading-none no-underline';
+const CTA =
+  'press group inline-flex items-center justify-center gap-2 border-[3px] border-ink px-5 py-3.5 text-[14px] font-semibold leading-none no-underline';
 
 function Words({ text }: { text: string }) {
   const parts = text.split(' ');
@@ -55,23 +55,11 @@ export function Hero() {
     return () => ctx.revert();
   }, []);
 
-  const tags = site.services.slice(0, 3);
-
   return (
-    <section ref={ref} className="relative isolate overflow-hidden border-b-[3px] border-ink">
-      <div aria-hidden className="halftone pointer-events-none absolute inset-0 -z-10" />
-      <div className="container-x grid min-h-[calc(100svh-4rem)] grid-cols-1 items-center gap-10 py-12 lg:grid-cols-[1.55fr_1fr] lg:gap-12">
+    <section ref={ref} className="relative isolate overflow-hidden border-b border-ink/20">
+      <div className="container-x grid min-h-[calc(100svh-4rem)] grid-cols-1 items-center gap-10 py-12 md:grid-cols-[1.4fr_0.6fr] lg:gap-16">
         <div className="flex flex-col gap-6">
-          <div className="flex flex-wrap gap-2.5">
-            {tags.map((s, i) => (
-              <span
-                key={s.id}
-                className={`brut-sm px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.06em] ${TAG_COLORS[i]}`}
-              >
-                {s.title[locale]}
-              </span>
-            ))}
-          </div>
+          <p className="eyebrow">{site.person.name}</p>
 
           <h1 className="text-[clamp(2.6rem,6.2vw,5.6rem)] font-bold leading-[0.98] tracking-[-0.03em]">
             <Words text={t('heroLineA')} />
@@ -79,25 +67,46 @@ export function Hero() {
             <Words text={t('heroLineC')} />
           </h1>
 
-          <p className="max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">{t('heroIntro')}</p>
+          <p className="max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
+            {t('heroIntro')}
+          </p>
 
           <div className="flex flex-wrap items-center gap-3.5">
             <Magnetic>
               <Link href="/work" className={`${CTA} bg-ink text-canvas`}>
                 {t('ctaWork')}
-                <span aria-hidden className="transition-transform duration-200 ease-steps3 group-hover:translate-x-1">→</span>
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 ease-steps3 group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </Link>
             </Magnetic>
             <Magnetic>
               <Link href="/contact" className={`${CTA} bg-surface text-ink`}>
                 {t('ctaContact')}
-                <span aria-hidden className="transition-transform duration-200 ease-steps3 group-hover:translate-x-1">→</span>
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 ease-steps3 group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </Link>
             </Magnetic>
           </div>
         </div>
 
-        <CardStack />
+        <figure className="mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl bg-canvas-sunken">
+          <Image
+            src={site.person.portrait.value}
+            alt={site.person.portraitAlt[locale]}
+            width={800}
+            height={1000}
+            priority
+            className="aspect-[4/5] h-auto w-full object-cover"
+          />
+        </figure>
       </div>
     </section>
   );

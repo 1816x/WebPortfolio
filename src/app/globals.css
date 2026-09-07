@@ -3,32 +3,32 @@
 @tailwind utilities;
 
 /* -------------------------------------------------------------------------- */
-/*  Design tokens — neo-brutalist, light-only, royal-blue + comic palette      */
+/*  Design tokens — clean editorial, light-only, with a single blue accent     */
 /*  Space-separated RGB so Tailwind can apply <alpha-value>.                   */
 /* -------------------------------------------------------------------------- */
 
 :root {
-  --canvas: 251 244 228;        /* #FBF4E4 cream page */
+  --canvas: 251 244 228; /* #FBF4E4 cream page */
   --canvas-raised: 255 255 255; /* white surface */
   --canvas-sunken: 244 235 214; /* deeper cream */
   --surface: 255 255 255;
-  --ink: 17 17 17;              /* #111 text + borders */
+  --ink: 17 17 17; /* #111 text + borders */
   --ink-muted: 90 84 74;
   --ink-subtle: 107 101 90;
   --line: 17 17 17;
-  --shadow: 17 17 17;           /* hard offset shadow colour */
+  --shadow: 17 17 17; /* hard offset shadow colour */
 
   /* royal blue — the lead accent (comic primary blue) */
-  --royal: 39 70 208;           /* #2746D0 */
-  --royal-deep: 22 42 140;      /* #162A8C */
-  --accent: 39 70 208;          /* primary accent = royal blue */
-  --blue: 39 70 208;            /* bg-brand-blue -> royal */
-  --yellow: 255 210 63;         /* #FFD23F */
-  --coral: 255 92 57;           /* #FF5C39 */
-  --green: 31 191 87;           /* #1FBF57 */
+  --royal: 39 70 208; /* #2746D0 */
+  --royal-deep: 22 42 140; /* #162A8C */
+  --accent: 39 70 208; /* primary accent = royal blue */
+  --blue: 39 70 208; /* bg-brand-blue -> royal */
+  --yellow: 255 210 63; /* #FFD23F */
+  --coral: 255 92 57; /* #FF5C39 */
+  --green: 31 191 87; /* #1FBF57 */
 
-  --panel: 17 17 17;            /* dark inverse panel (contact/footer/ticker) */
-  --panel-ink: 251 244 228;     /* light text that lives on the panel */
+  --panel: 17 17 17; /* dark inverse panel (contact/footer/ticker) */
+  --panel-ink: 251 244 228; /* light text that lives on the panel */
   --gutter: clamp(1.1rem, 3.5vw, 2.5rem);
 }
 
@@ -93,13 +93,15 @@ body {
 
   /* the bordered + hard-offset-shadow box that defines the look */
   .brut {
-    border: 3px solid rgb(var(--line));
-    box-shadow: 5px 5px 0 rgb(var(--shadow));
+    border: 1px solid rgb(var(--line) / 0.24);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgb(var(--shadow) / 0.07);
     background-color: rgb(var(--surface));
   }
   .brut-sm {
-    border: 2px solid rgb(var(--line));
-    box-shadow: 3px 3px 0 rgb(var(--shadow));
+    border: 1px solid rgb(var(--line) / 0.24);
+    border-radius: 0.6rem;
+    box-shadow: none;
   }
 
   .dot {
@@ -122,13 +124,13 @@ body {
 
 @media (hover: hover) {
   .press:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0 rgb(var(--shadow));
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgb(var(--shadow) / 0.1);
   }
 }
 .press:active {
-  transform: translate(5px, 5px);
-  box-shadow: 0 0 0 rgb(var(--shadow));
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgb(var(--shadow) / 0.08);
 }
 
 /* -------------------------------------------------------------------------- */

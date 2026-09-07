@@ -1,9 +1,9 @@
 # Design system
 
-The visual identity is **light-only neo-brutalist**: a warm cream page, hard
-3px ink borders with offset drop-shadows, a royal-blue accent over comic
-ben-day halftone dots, and two type voices (a grotesque display/sans + a
-mono for metadata). Motion is selective and always reduced-motion aware.
+The visual identity is **light, clean and editorial**: a warm cream page,
+dark typography, restrained borders and shadows, and one dominant royal-blue
+accent. Outfit is used for readable hierarchy while mono is reserved for
+metadata. Motion is selective, functional and always reduced-motion aware.
 
 ## Tokens
 
@@ -12,20 +12,20 @@ Tokens live in `src/app/globals.css` as CSS custom properties on `:root`
 them via the `colors` config in `tailwind.config.ts`. There is **no dark
 theme** — a single light palette.
 
-| Token             | Value        | Use                                   |
-| ----------------- | ------------ | ------------------------------------- |
-| `--canvas`        | `#FBF4E4`    | cream page background                  |
-| `--canvas-sunken` | `#F4EBD6`    | deeper cream (media wells)             |
-| `--surface`       | `#FFFFFF`    | raised card surface                    |
-| `--ink`           | `#111111`    | text + 3px borders + hard shadow       |
-| `--ink-muted` / `--ink-subtle` | greys | body / metadata text            |
-| `--royal` / `--accent` / `--blue` | `#2746D0` | lead accent (comic primary blue) |
-| `--royal-deep`    | `#162A8C`    | footer field                           |
-| `--yellow`        | `#FFD23F`    | accent fill / marker                   |
-| `--coral`         | `#FF5C39`    | accent fill                            |
-| `--green`         | `#1FBF57`    | accent fill / live dot                 |
-| `--panel` / `--panel-ink` | `#111` / cream | inverse panels (contact/footer) |
-| `--on-accent`     | `#111111`    | fixed near-black text on light fills; never flips |
+| Token                             | Value          | Use                                               |
+| --------------------------------- | -------------- | ------------------------------------------------- |
+| `--canvas`                        | `#FBF4E4`      | cream page background                             |
+| `--canvas-sunken`                 | `#F4EBD6`      | deeper cream (media wells)                        |
+| `--surface`                       | `#FFFFFF`      | raised card surface                               |
+| `--ink`                           | `#111111`      | text + 3px borders + hard shadow                  |
+| `--ink-muted` / `--ink-subtle`    | greys          | body / metadata text                              |
+| `--royal` / `--accent` / `--blue` | `#2746D0`      | lead accent (comic primary blue)                  |
+| `--royal-deep`                    | `#162A8C`      | footer field                                      |
+| `--yellow`                        | `#FFD23F`      | accent fill / marker                              |
+| `--coral`                         | `#FF5C39`      | accent fill                                       |
+| `--green`                         | `#1FBF57`      | accent fill / live dot                            |
+| `--panel` / `--panel-ink`         | `#111` / cream | inverse panels (contact/footer)                   |
+| `--on-accent`                     | `#111111`      | fixed near-black text on light fills; never flips |
 
 Use `rgb(var(--token))` or the Tailwind classes (`bg-canvas`, `text-ink-muted`,
 `text-accent`, `bg-brand-yellow`, `bg-brand-royal`, …).
@@ -34,18 +34,18 @@ Use `rgb(var(--token))` or the Tailwind classes (`bg-canvas`, `text-ink-muted`,
 
 Two faces, served via `@fontsource` and wired in `src/lib/fonts.ts`:
 
-| Role         | Family          | Usage                                |
-| ------------ | --------------- | ------------------------------------ |
-| Display/Sans | Space Grotesk   | Headings, hero, body, navigation     |
-| Mono         | JetBrains Mono  | Labels, eyebrows, metadata, buttons  |
+| Role         | Family         | Usage                               |
+| ------------ | -------------- | ----------------------------------- |
+| Display/Sans | Outfit         | Headings, hero, body, navigation    |
+| Mono         | JetBrains Mono | Labels, eyebrows, metadata, buttons |
 
 Helper classes in `globals.css`: `.eyebrow` and `.label` (small uppercase
 mono lead-ins / metadata).
 
 ## Primitives
 
-- `.brut` — 3px ink border + `5px 5px 0` offset shadow. `.brut-sm` is the 2px
-  variant. The defining box of the whole look.
+- `.brut` — retained as a compatibility primitive, now rendered with a subtle
+  border, rounded corners and a soft low-contrast shadow.
 - `.press` — applied to interactive `.brut` boxes: lifts `-3px,-3px` on hover
   (bigger shadow) and slams flat on `:active`. Uses stepped easing.
 - `.halftone` / `.halftone-strong` / `.halftone-on-royal` — comic ben-day dot
@@ -71,17 +71,17 @@ hydration) for users who never set the OS flag.
 
 ## Components
 
-| Component        | Purpose                                                   |
-| ---------------- | --------------------------------------------------------- |
-| `Header`         | Sticky nav, mobile drawer, skip-link target               |
-| `Footer`         | Tagline + nav + contact channels (royal-deep field)       |
-| `CalmToggle`     | Visible reduce-motion switch (replaces the old theme toggle) |
-| `LocaleSwitcher` | es / en (next-intl), localized `aria-label`               |
+| Component        | Purpose                                                                        |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `Header`         | Sticky nav, mobile drawer, skip-link target                                    |
+| `Footer`         | Tagline + nav + contact channels (royal-deep field)                            |
+| `CalmToggle`     | Visible reduce-motion switch (replaces the old theme toggle)                   |
+| `LocaleSwitcher` | es / en (next-intl), localized `aria-label`                                    |
 | `Button`         | Bordered hard-shadow button; variants primary/secondary/accent/ghost/underline |
-| `Reveal`         | Scroll-triggered snap-in wrapper                          |
-| `PendingBadge`   | Surfaces unverified content                               |
-| `CardStack`      | Interactive DOM hero centerpiece                          |
-| `ContactPanel`   | Royal contact section (copy-email + channels)             |
+| `Reveal`         | Scroll-triggered snap-in wrapper                                               |
+| `PendingBadge`   | Surfaces unverified content                                                    |
+| `CardStack`      | Interactive DOM hero centerpiece                                               |
+| `ContactPanel`   | Royal contact section (copy-email + channels)                                  |
 
 ## Accessibility
 
